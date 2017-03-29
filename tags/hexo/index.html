@@ -90,7 +90,7 @@
 <meta name="description" content="是你。你会像他一样">
 <meta property="og:type" content="website">
 <meta property="og:title" content="慎思而笃行">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/hexo/index.html">
 <meta property="og:site_name" content="慎思而笃行">
 <meta property="og:description" content="是你。你会像他一样">
 <meta name="twitter:card" content="summary">
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/hexo/"/>
 
 
 
 
 
-  <title> 慎思而笃行 </title>
+  <title> 标签: hexo | 慎思而笃行 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,168 +247,45 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        hexo
+        <small>标签</small>
+      </h2>
+    </div>
+
     
       
 
-  
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/new/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wenzi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="慎思而笃行">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h1 class="post-title">
         
+            <a class="post-title-link" href="/2017/03/29/new/" itemprop="url">
+              
+                <span itemprop="name">hexo搭建github个人主页</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/29/new/" itemprop="url">
-                  hexo搭建github个人主页
-                </a>
-              
-            
-          </h1>
-        
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T13:54:15+08:00">
-                2017-03-29
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-29T13:54:15+08:00"
+              content="2017-03-29" >
+          03-29
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>由于最近比较清闲，自己看了点东西，看完后回头想想，好像什么也没记住。一味的只是看终究还是不行，看完一遍只留下一点浅浅的印象，这样不行，所以我就想着也弄个个人主页吧，没事记点笔记，写写工作，谈谈生活，美滋滋。</p>
-<p>用hexo搭建的时候，应该是没有接触过这面，git也一直用可视化工具，经常弄了半个小时一个小时才完成想要的东西，感觉自己像个白痴。真是年纪大了脑子也不灵光了，满满的危机感。废话比较多了，直接上搭建步骤，免得以后又忘了。。。</p>
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><hr>
-<p>hexo是一款基于Node.js的静态博客框架，so…</p>
-<h4 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h4><p><a href="https://nodejs.org/en/download/" target="_blank" rel="external">下载地址</a><br>一路安装就行，注意path要勾上，默认就是打勾的，所以基本没有什么问题。</p>
-<h4 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h4><p><a href="http://git-scm.com/download/" target="_blank" rel="external">下载地址</a></p>
-<h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><p>选个你喜欢的位置，比如E://hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ cd e://hexo</div><div class="line">$ npm install hexo-cli -g </div><div class="line">$ hexo init blog</div><div class="line">$ cd blog</div><div class="line">$ npm install</div><div class="line">$ hexo g </div><div class="line">$ hexo s</div></pre></td></tr></table></figure></p>
-<p>上面的命令执行完成之后就可以打开浏览器查看<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
-<p><strong> 注意：</strong> ctrl+c可以关掉本地服务，一般情况是不需要关掉的，你直接改你想要的东西改完，刷新一下网页就ok了</p>
-<p>几个常用的命令：<br> 1.hexo g(hexo generate) 生成静态文件，会在当前目录下生成一个叫做public的文件夹<br> 2.hexo s(hexo server) 启动本地服务，用来预览博客<br> 3.hexo d(hexo deploy) 部署到远端(比如github)<br> 4.hexo n “new”(hexo new “new”) 新建文章</p>
-<h2 id="Hexo主题相关"><a href="#Hexo主题相关" class="headerlink" title="Hexo主题相关"></a>Hexo主题相关</h2><hr>
-<p>港真，hexo默认的主题真的不怎么好看，作为一个有个性的人，怎么可以用官方demo主题，果断研究如果安装主题。找了好久主题，最后还是用了最多人用的next，别说我每个性，我不用官方的就已经是很有个性了。<br>附上<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next官网</a></p>
-<h4 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h4><p>1.安装Next<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure></p>
-<p>2.使用主题</p>
-<p>打开根目录_config.yml配置文件中的theme属性，将其设置为next。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Extensions</div><div class="line">## Plugins: http://hexo.io/plugins/</div><div class="line">## Themes: http://hexo.io/themes/</div><div class="line">theme: next</div></pre></td></tr></table></figure></p>
-<p>3.查看主题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo g # 生成</div><div class="line">$ hexo s # 启动本地web服务器</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    </header>
   </article>
 
 
     
-  </section>
+  </div>
 
   
 

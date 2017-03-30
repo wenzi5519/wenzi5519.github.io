@@ -95,11 +95,13 @@
 <meta property="og:site_name" content="慎思而笃行">
 <meta property="og:description" content="由于最近比较清闲，自己看了点东西，看完后回头想想，好像什么也没记住。一味的只是看终究还是不行，看完一遍只留下一点浅浅的印象，这样不行，所以我就想着也弄个个人主页吧，没事记点笔记，写写工作，谈谈生活，美滋滋。
 用hexo搭建的时候，应该是没有接触过这面，git也一直用可视化工具，经常弄了半个小时一个小时才完成想要的东西，感觉自己像个白痴。真是年纪大了脑子也不灵光了，满满的危机感。废话比较多了，直接上">
-<meta property="og:updated_time" content="2017-03-29T07:54:56.000Z">
+<meta property="og:image" content="http://onifre9rp.bkt.clouddn.com/ico.png">
+<meta property="og:updated_time" content="2017-03-30T01:28:07.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo搭建github个人主页">
 <meta name="twitter:description" content="由于最近比较清闲，自己看了点东西，看完后回头想想，好像什么也没记住。一味的只是看终究还是不行，看完一遍只留下一点浅浅的印象，这样不行，所以我就想着也弄个个人主页吧，没事记点笔记，写写工作，谈谈生活，美滋滋。
 用hexo搭建的时候，应该是没有接触过这面，git也一直用可视化工具，经常弄了半个小时一个小时才完成想要的东西，感觉自己像个白痴。真是年纪大了脑子也不灵光了，满满的危机感。废话比较多了，直接上">
+<meta name="twitter:image" content="http://onifre9rp.bkt.clouddn.com/ico.png">
 
 
 
@@ -373,6 +375,32 @@
 <p>打开根目录_config.yml配置文件中的theme属性，将其设置为next。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Extensions</div><div class="line">## Plugins: http://hexo.io/plugins/</div><div class="line">## Themes: http://hexo.io/themes/</div><div class="line">theme: next</div></pre></td></tr></table></figure></p>
 <p>3.查看主题</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo g # 生成</div><div class="line">$ hexo s # 启动本地web服务器</div></pre></td></tr></table></figure>
+<h4 id="个性化主题"><a href="#个性化主题" class="headerlink" title="个性化主题"></a>个性化主题</h4><p>好吧，所谓的个性化。在next官网基本都有api，很完整。</p>
+<p>1.首先是站点配置文件，就是你根目录下的_config.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># Site 网站</div><div class="line">title: 慎思而笃行                //标题</div><div class="line">subtitle: 终极奥义·复制粘贴      //副标题</div><div class="line">description: 是你。你会像他一样  //描述就是个性签名（一个微笑）</div><div class="line">author: wenzi                  //作者</div><div class="line">language: zh-Hans              //网站语言</div><div class="line">timezone:                      //时区默认为电脑的时区</div></pre></td></tr></table></figure></p>
+<p>2.主题配置文件,主题next下的_config.yml<br>next支持三种主题，打开相应的注释就可以了，还是挺方便的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Schemes</div><div class="line"># scheme: Muse</div><div class="line">scheme: Mist</div><div class="line"># scheme: Pisces</div></pre></td></tr></table></figure></p>
+<p>网站图标，最好用ico格式，百度ioc，一大堆转换网站</p>
+<p><img src="http://onifre9rp.bkt.clouddn.com/ico.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Put your favicon.ico into `hexo-site/source/` directory.</div><div class="line">favicon: images/favicon.ico</div></pre></td></tr></table></figure></p>
+<p>菜单，出了主题自带的也可以自己创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  home: /</div><div class="line">  categories: /categories</div><div class="line">  archives: /archives</div><div class="line">  about: /about</div><div class="line">  tags: /tags</div><div class="line"></div><div class="line">menu_icons:</div><div class="line">  enable: false</div><div class="line">  #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome</div><div class="line">  home: home</div><div class="line">  about: user</div><div class="line">  categories: th</div><div class="line">  schedule: calendar</div><div class="line">  tags: tags</div><div class="line">  archives: archive</div><div class="line">  sitemap: sitemap</div><div class="line">  commonweal: heartbeat</div></pre></td></tr></table></figure></p>
+<p>外链网站<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">social:</div><div class="line">  GitHub: https://github.com/wenzi5519</div><div class="line"></div><div class="line">social_icons:</div><div class="line">  enable: true</div><div class="line">  GitHub: github</div></pre></td></tr></table></figure></p>
+<p>打赏功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">donate: </div><div class="line">  enable: true</div><div class="line">  text: Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！</div><div class="line">  alipay: </div><div class="line">  wechat:</div></pre></td></tr></table></figure></p>
+<p>*更具体的可以参考官网</p>
+<h2 id="Git相关"><a href="#Git相关" class="headerlink" title="Git相关"></a>Git相关</h2><hr>
+<p>git作为一名开发人员，应该都用过，不过应该也有像我这样的，用确实用了，但是还是不会用，实力尴尬。就这个项目，写一点我部署项目的时候用到的git命令好了</p>
+<h4 id="首先是hexo的部署方法，不过我没有成功。"><a href="#首先是hexo的部署方法，不过我没有成功。" class="headerlink" title="首先是hexo的部署方法，不过我没有成功。"></a>首先是hexo的部署方法，不过我没有成功。</h4><p>在根目录的，站点配置文件里面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/wenzi5519/wenzi5519.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<p>然后执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deloyer-git --save</div><div class="line">$ hexo d</div></pre></td></tr></table></figure></p>
+<p>就可以部署完成了。</p>
+<h4 id="使用Git命令部署"><a href="#使用Git命令部署" class="headerlink" title="使用Git命令部署"></a>使用Git命令部署</h4><p>首先配置git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;username&quot;</div><div class="line">$ git config --global user.email &quot;username@example.com&quot;</div></pre></td></tr></table></figure></p>
+<p>检测电脑有没有ssh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -al ~/.ssh</div></pre></td></tr></table></figure></p>
+<p>如果没有生成新的ssh Key,一路回车<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</div></pre></td></tr></table></figure></p>
+<p>然后看下ssh-agent是否可运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-agent -s</div></pre></td></tr></table></figure></p>
+<p>添加ssh key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/id_rsa</div></pre></td></tr></table></figure></p>
+<p>复制key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">clip &lt; ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure></p>
+<p>然后在github右上角点头像–&gt;setting–&gt;Personal settings–&gt;ssh key创建<br>测试一下试试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+<p>接下来就是push到github了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line">$ git commit -m “change description”</div><div class="line">$ git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>*这里新建一个hexo分支是为了方便可以在不同的电脑上写博客</p>
+<p><strong> 已有环境 </strong><br>已经在这台电脑上写过博客了，那么可以在已有的工作目录下同步之前写的博客。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull</div></pre></td></tr></table></figure></p>
+<p>然后就可以写新的博客了，写好之后 hexo g -d 部署到远端<br>接着就是push到github<br><strong> 新的环境 </strong><br>新的电脑，我们需要先把项目下载到本地，然后在hexo初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/wenzi5519/wenzi5519.github.io.git</div><div class="line">$ cd wenzi5519.github.io</div><div class="line">$ npm install hexo</div><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>然后就是和已有环境一样的操作了，部署推送。</p>
 
       
     </div>
@@ -492,7 +520,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -503,7 +531,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -549,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-text">配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Node"><span class="nav-text">安装Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Git"><span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Hexo"><span class="nav-text">安装Hexo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo主题相关"><span class="nav-text">Hexo主题相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装主题"><span class="nav-text">安装主题</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-text">配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Node"><span class="nav-text">安装Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Git"><span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Hexo"><span class="nav-text">安装Hexo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo主题相关"><span class="nav-text">Hexo主题相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装主题"><span class="nav-text">安装主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个性化主题"><span class="nav-text">个性化主题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git相关"><span class="nav-text">Git相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先是hexo的部署方法，不过我没有成功。"><span class="nav-text">首先是hexo的部署方法，不过我没有成功。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Git命令部署"><span class="nav-text">使用Git命令部署</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

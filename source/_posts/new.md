@@ -1,7 +1,7 @@
 ---
 title: 'hexo搭建github个人主页'
 date: 2017-03-29 13:54:15
-tags: [hexo,笔记]
+tags: [hexo,next]
 categories: 笔记
 ---
 

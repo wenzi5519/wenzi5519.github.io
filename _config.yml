@@ -71,3 +71,6 @@ deploy:
   type: git
   repo: https://github.com/wenzi5519/wenzi5519.github.io.git
   branch: master
+
+# Baidu Analytics ID
+baidu_analytics: 09cf32d62c16dfa55dacadbfce312d0b

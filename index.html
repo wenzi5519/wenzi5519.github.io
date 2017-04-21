@@ -270,6 +270,331 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/19/kotlin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wenzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="慎思而笃行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/19/kotlin/" itemprop="url">
+                  kotlin基础语法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T10:47:46+08:00">
+                2017-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。</p>
+</blockquote>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>1、定义类使用关键字 <code>class</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class MainActivity&#123;&#125;</div></pre></td></tr></table></figure></p>
+<p>2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class Person(name:String,age:Int)</div></pre></td></tr></table></figure></p>
+<p>可以在<code>init</code>块中写构造函数的函数体<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Person(name:String,age:Int)&#123;</div><div class="line">    init&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>3、继承<br>父类需要使用关键字 open 声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">open class Anmina(name:String)</div><div class="line"></div><div class="line">class Person(age:Int): Anmina(name)</div></pre></td></tr></table></figure></p>
+<p>但我们只有单个构造函数，需要从父类继承下来的构造器中指定需要的参数，替换<code>java</code>中的<code>super</code>调用的。</p>
+<h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><p>使用关键字 <code>fun</code><br>1、明确参数类型，返回值类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun sum(a:Int ,b:Int) :Int&#123;</div><div class="line">    return a+b</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2、不指定返回值类型，可以使用表达式计算出来自行推断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fun sum (a:Int,b:Int) =a+b</div></pre></td></tr></table></figure></p>
+<p>3、函数可返回无意义的值，和java中<code>void</code>类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//没有返回值的函数，显式指定``Unit``为返回值  </div><div class="line">fun showAddResult(a: Int, b: Int): Unit &#123;  </div><div class="line">    println(a + b)  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">//没有返回值的函数，省略``Unit``的写法  </div><div class="line">fun showAddResult2(a: Int, b: Int) &#123;  </div><div class="line">    println(a + b)  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>4、<code>kotlin</code>中参数先写名称，在写泛型，而且可以给参数指定默认值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun toast(message:String,time:Int = Toast.LENGTH_SHORT)&#123;</div><div class="line">    Toast.makeText(this,message,time).show()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在上面的方法中，第二个参数制定了一个默认值，所以在调用该方法的时候我们，可以选择只传一个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toast(&quot;默认参数，吐司测试&quot;)</div><div class="line">toast(&quot;传参，吐司测试&quot;,3)</div></pre></td></tr></table></figure></p>
+<h2 id="基本类型和变量"><a href="#基本类型和变量" class="headerlink" title="基本类型和变量"></a>基本类型和变量</h2><p>类型：<br>数字类型不会自动转型。需要使用相应的方法操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val i:Int=5</div><div class="line">val d:Double=i.toDouble()</div></pre></td></tr></table></figure></p>
+<p>运算符：</p>
+<blockquote>
+<p>shl(bits) – signed shift left (Java’s &lt;&lt;)<br>shr(bits) – signed shift right (Java’s &gt;&gt;)<br>ushr(bits) – unsigned shift right (Java’s &gt;&gt;&gt;)<br>and(bits) – bitwise and<br>or(bits) – bitwise or<br>xor(bits) – bitwise xor<br>inv() – bitwise inversion</p>
+</blockquote>
+<p>字符串：<br><code>String</code> 字符串可以像数组一样，通过下标访问到数据</p>
+<p>变量：<br>变量使用关键字 <code>var</code> 和<code>val</code>定义<br>一个重要的概念是：尽可能地使用val </p>
+<p>属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Person&#123;</div><div class="line">    var name: String=&quot;&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">var person=Person()</div><div class="line">person.name=&quot;jack&quot;</div><div class="line">val name=person.name</div></pre></td></tr></table></figure></p>
+<p>如果没有指定，属性会默认使用<code>getter</code>和<code>setter</code>方法。可以自己指定成自定义的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public classs Person &#123;</div><div class="line">    var name: String = &quot;&quot;</div><div class="line">        get() = field.toUpperCase()</div><div class="line">        set(value)&#123;</div><div class="line">            field = &quot;Name: $value&quot;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Anko"><a href="#Anko" class="headerlink" title="Anko"></a>Anko</h2><p>Anko是JetBrains开发的用来代替xml生成ui布局的库。<br>Anko使用扩展函数在Android框架中增添了一些新的功能<br>比如一个Anko扩展函数可以被用来简化获取一个RecyclerView：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">val forecastList: RecyclerView = find(R.id.forecast_list)</div></pre></td></tr></table></figure></p>
+<p><strong>扩展函数</strong><br>扩展函数是指在一个类上增加一种新的行为，甚至我们没有这个类代码的访问权限。<br>Kotlin中扩展函数的一个优势是我们不需要再调用方法的时候吧整个对象当做参数传入。<br>扩展函数表现的就像是属于这个类的一样，而且我们可以使用<code>this</code>关键字和调用所有的public方法<br>举个栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun Context.toast(message:CharAequence,duration:Int=Toast.LENGTH_SHORT)&#123;</div><div class="line">    Toast.makeText(this,message,druation).show()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个方法可以在Activity内部直接使用，不需要传入context<br>Anko已经包括了自己的toast扩展函数，跟上面这个很相似。Anko提供了一些针对CharSequence和resource的函数，还有两个不同的toast和longToast方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toast(&quot;Hello world!&quot;)</div><div class="line">longToast(R.id.hello_world)</div></pre></td></tr></table></figure></p>
+<p><strong>api请求</strong><br>kotlin提供的扩展函数让请求变得更加简单。<br>再举个栗子：<br>先创建一个Request类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class Request(val url: String) &#123;</div><div class="line">    public fun run() &#123;</div><div class="line">        val forecastJsonStr = URL(url).readText()</div><div class="line">        Log.d(javaClass.simpleName, forecastJsonStr)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>请求很简单地接收一个url，然后读取结果并在logcat上打印json。实现非常简单，因为我们使用<code>readText</code>，这是Kotlin标准库中的扩展函数。这个方法不推荐结果很大的响应，但是在我们这个例子中已经足够好了。<br><strong>异步请求</strong><br>anko提供了非常简单的DSL来处理异步任务，可以满足大部分的需求。<br>提供<code>async</code>函数执行异步线程，通过<code>UIThread</code>的方式回到主线程。一个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">async() &#123;</div><div class="line">    Request(url).run()</div><div class="line">    uiThread &#123; longToast(&quot;Request performed&quot;) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>UIThread</code>有一个很不错的一点就是可以依赖于调用者。如果它是被一个<code>Activity</code>调用的，那么如果<code>activity.isFinishing()</code>返回<code>true</code>，则<code>uiThread</code>不会执行，这样就不会在<code>Activity</code>销毁的时候遇到崩溃的情况了。<br>假如你想使用<code>Future</code>来工作，<code>async</code>返回一个<code>Java Future</code>。而且如果你需要一个返回结果的<code>Future</code>，你可以使用<code>asyncResult</code>。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/01/function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wenzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="慎思而笃行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/01/function/" itemprop="url">
+                  JavaScript函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T09:49:26+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><p>在js中函数的定义方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function a(x)&#123;</div><div class="line">     if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在js中函数也是一个对象，所有可以写成如下形式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = function (x)&#123;</div><div class="line">     if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>第二种方式属于匿名函数，但是因为赋值给了变量a，所以两种定义是一样的，但是第二种方式要注意在末尾加 ； 结束赋值语句。</p>
+<h3 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h3><p>由于JavaScript允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题，虽然函数内部并不需要这些参数，同样的少传也没有关系。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a(10);</div><div class="line">abs(10, &apos;blablabla&apos;); </div><div class="line">abs(); // 返回NaN</div></pre></td></tr></table></figure></p>
+<p>为了避免由于收到undefined参数二导致的输出结果为NaN，可以对参数进行判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function a(x) &#123;</div><div class="line">    if (typeof x !== &apos;number&apos;) &#123;</div><div class="line">        throw &apos;Not a number&apos;;</div><div class="line">    &#125;</div><div class="line">    if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><p>js中的一个关键字，只能在函数内部起作用，永远指向当前函数的调用者传入的所有参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo(x) &#123;</div><div class="line">    alert(x); // 10</div><div class="line">    for (var i=0; i&lt;arguments.length; i++) &#123;</div><div class="line">        alert(arguments[i]); // 10, 20, 30</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">foo(10, 20, 30);</div></pre></td></tr></table></figure></p>
+<p>利用arguments可以获得传入的参数，即使没有定义参数，也可以拿到参数值 arguments.length === 0<br>最常见的用法是判断传入参数的个数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// foo(a[, b], c)</div><div class="line">// 接收2~3个参数，b是可选参数，如果只传2个参数，b默认为null：</div><div class="line">function foo(a, b, c) &#123;</div><div class="line">    if (arguments.length === 2) &#123;</div><div class="line">        // 实际拿到的参数是a和b，c为undefined</div><div class="line">        c = b; // 把b赋给c</div><div class="line">        b = null; // b变为默认值</div><div class="line">    &#125;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h3><p>ES6引入了rest可变参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function foo(a, b, ...rest) &#123;</div><div class="line">    console.log(&apos;a = &apos; + a);</div><div class="line">    console.log(&apos;b = &apos; + b);</div><div class="line">    console.log(rest);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(1, 2, 3, 4, 5);</div><div class="line">// 结果:</div><div class="line">// a = 1</div><div class="line">// b = 2</div><div class="line">// Array [ 3, 4, 5 ]</div><div class="line"></div><div class="line">foo(1);</div><div class="line">// 结果:</div><div class="line">// a = 1</div><div class="line">// b = undefined</div><div class="line">// Array []</div></pre></td></tr></table></figure></p>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>js的函数有一个特点，会先扫描函数体的语句，把所有声明的变量“提升”到函数的顶部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    var x = &apos;Hello, &apos; + y;</div><div class="line">    alert(x);</div><div class="line">    var y = &apos;Bob&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">相当于</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">    var y; // 提升变量y的申明</div><div class="line">    var x = &apos;Hello, &apos; + y;</div><div class="line">    alert(x);</div><div class="line">    y = &apos;Bob&apos;;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">### 常量</div><div class="line">ES6引入了const定义常量</div><div class="line">### 方法</div><div class="line">在一个对象中绑定函数，称为这个对象的方法。</div></pre></td></tr></table></figure></p>
+<p>var person={<br>    name: ‘小明’,<br>    brith: 1994,<br>    age： function(){<br>        var y = new Date().getFullYear();<br>        return y - this.brith;<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">### apply</div><div class="line">可以接收两个参数，第一个参数就是需要绑定的this变量，第二个参数是Array，表示函数本身的参数。</div></pre></td></tr></table></figure></p>
+<p>function getAge() {<br>    var y = new Date().getFullYear();<br>    return y - this.birth;<br>}</p>
+<p>var xiaoming = {<br>    name: ‘小明’,<br>    birth: 1990,<br>    age: getAge<br>};</p>
+<p>xiaoming.age(); // 25<br>getAge.apply(xiaoming, []); // 25, this指向xiaoming, 参数为空<br>```</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -667,7 +992,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -689,7 +1014,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

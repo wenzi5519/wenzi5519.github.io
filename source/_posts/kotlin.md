@@ -1,5 +1,5 @@
 ---
-title: kotlin基础语法
+title: kotlin基础语法 01
 date: 2017-04-19 10:47:46
 tags: [Kotlin,Anko,java]
 categories: 笔记

@@ -1,0 +1,784 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Kotlin,Anko,java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。
+
+类1、定义类使用关键字 class1class MainActivity&amp;#123;&amp;#125;
+2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号1class P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kotlin基础语法">
+<meta property="og:url" content="http://yoursite.com/2017/04/19/kotlin/index.html">
+<meta property="og:site_name" content="慎思而笃行">
+<meta property="og:description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。
+
+类1、定义类使用关键字 class1class MainActivity&amp;#123;&amp;#125;
+2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号1class P">
+<meta property="og:updated_time" content="2017-04-21T08:25:19.863Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kotlin基础语法">
+<meta name="twitter:description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。
+
+类1、定义类使用关键字 class1class MainActivity&amp;#123;&amp;#125;
+2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号1class P">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/19/kotlin/"/>
+
+
+
+
+
+  <title> kotlin基础语法 | 慎思而笃行 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?09cf32d62c16dfa55dacadbfce312d0b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">慎思而笃行</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">终极奥义·复制粘贴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/19/kotlin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wenzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="慎思而笃行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                kotlin基础语法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T10:47:46+08:00">
+                2017-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。</p>
+</blockquote>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>1、定义类使用关键字 <code>class</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class MainActivity&#123;&#125;</div></pre></td></tr></table></figure></p>
+<p>2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class Person(name:String,age:Int)</div></pre></td></tr></table></figure></p>
+<p>可以在<code>init</code>块中写构造函数的函数体<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Person(name:String,age:Int)&#123;</div><div class="line">    init&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>3、继承<br>父类需要使用关键字 open 声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">open class Anmina(name:String)</div><div class="line"></div><div class="line">class Person(age:Int): Anmina(name)</div></pre></td></tr></table></figure></p>
+<p>但我们只有单个构造函数，需要从父类继承下来的构造器中指定需要的参数，替换<code>java</code>中的<code>super</code>调用的。</p>
+<h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><p>使用关键字 <code>fun</code><br>1、明确参数类型，返回值类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun sum(a:Int ,b:Int) :Int&#123;</div><div class="line">    return a+b</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2、不指定返回值类型，可以使用表达式计算出来自行推断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fun sum (a:Int,b:Int) =a+b</div></pre></td></tr></table></figure></p>
+<p>3、函数可返回无意义的值，和java中<code>void</code>类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//没有返回值的函数，显式指定``Unit``为返回值  </div><div class="line">fun showAddResult(a: Int, b: Int): Unit &#123;  </div><div class="line">    println(a + b)  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">//没有返回值的函数，省略``Unit``的写法  </div><div class="line">fun showAddResult2(a: Int, b: Int) &#123;  </div><div class="line">    println(a + b)  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>4、<code>kotlin</code>中参数先写名称，在写泛型，而且可以给参数指定默认值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun toast(message:String,time:Int = Toast.LENGTH_SHORT)&#123;</div><div class="line">    Toast.makeText(this,message,time).show()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在上面的方法中，第二个参数制定了一个默认值，所以在调用该方法的时候我们，可以选择只传一个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toast(&quot;默认参数，吐司测试&quot;)</div><div class="line">toast(&quot;传参，吐司测试&quot;,3)</div></pre></td></tr></table></figure></p>
+<h2 id="基本类型和变量"><a href="#基本类型和变量" class="headerlink" title="基本类型和变量"></a>基本类型和变量</h2><p>类型：<br>数字类型不会自动转型。需要使用相应的方法操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val i:Int=5</div><div class="line">val d:Double=i.toDouble()</div></pre></td></tr></table></figure></p>
+<p>运算符：</p>
+<blockquote>
+<p>shl(bits) – signed shift left (Java’s &lt;&lt;)<br>shr(bits) – signed shift right (Java’s &gt;&gt;)<br>ushr(bits) – unsigned shift right (Java’s &gt;&gt;&gt;)<br>and(bits) – bitwise and<br>or(bits) – bitwise or<br>xor(bits) – bitwise xor<br>inv() – bitwise inversion</p>
+</blockquote>
+<p>字符串：<br><code>String</code> 字符串可以像数组一样，通过下标访问到数据</p>
+<p>变量：<br>变量使用关键字 <code>var</code> 和<code>val</code>定义<br>一个重要的概念是：尽可能地使用val </p>
+<p>属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Person&#123;</div><div class="line">    var name: String=&quot;&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">var person=Person()</div><div class="line">person.name=&quot;jack&quot;</div><div class="line">val name=person.name</div></pre></td></tr></table></figure></p>
+<p>如果没有指定，属性会默认使用<code>getter</code>和<code>setter</code>方法。可以自己指定成自定义的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public classs Person &#123;</div><div class="line">    var name: String = &quot;&quot;</div><div class="line">        get() = field.toUpperCase()</div><div class="line">        set(value)&#123;</div><div class="line">            field = &quot;Name: $value&quot;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Anko"><a href="#Anko" class="headerlink" title="Anko"></a>Anko</h2><p>Anko是JetBrains开发的用来代替xml生成ui布局的库。<br>Anko使用扩展函数在Android框架中增添了一些新的功能<br>比如一个Anko扩展函数可以被用来简化获取一个RecyclerView：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">val forecastList: RecyclerView = find(R.id.forecast_list)</div></pre></td></tr></table></figure></p>
+<p><strong>扩展函数</strong><br>扩展函数是指在一个类上增加一种新的行为，甚至我们没有这个类代码的访问权限。<br>Kotlin中扩展函数的一个优势是我们不需要再调用方法的时候吧整个对象当做参数传入。<br>扩展函数表现的就像是属于这个类的一样，而且我们可以使用<code>this</code>关键字和调用所有的public方法<br>举个栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun Context.toast(message:CharAequence,duration:Int=Toast.LENGTH_SHORT)&#123;</div><div class="line">    Toast.makeText(this,message,druation).show()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个方法可以在Activity内部直接使用，不需要传入context<br>Anko已经包括了自己的toast扩展函数，跟上面这个很相似。Anko提供了一些针对CharSequence和resource的函数，还有两个不同的toast和longToast方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toast(&quot;Hello world!&quot;)</div><div class="line">longToast(R.id.hello_world)</div></pre></td></tr></table></figure></p>
+<p><strong>api请求</strong><br>kotlin提供的扩展函数让请求变得更加简单。<br>再举个栗子：<br>先创建一个Request类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class Request(val url: String) &#123;</div><div class="line">    public fun run() &#123;</div><div class="line">        val forecastJsonStr = URL(url).readText()</div><div class="line">        Log.d(javaClass.simpleName, forecastJsonStr)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>请求很简单地接收一个url，然后读取结果并在logcat上打印json。实现非常简单，因为我们使用<code>readText</code>，这是Kotlin标准库中的扩展函数。这个方法不推荐结果很大的响应，但是在我们这个例子中已经足够好了。<br><strong>异步请求</strong><br>anko提供了非常简单的DSL来处理异步任务，可以满足大部分的需求。<br>提供<code>async</code>函数执行异步线程，通过<code>UIThread</code>的方式回到主线程。一个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">async() &#123;</div><div class="line">    Request(url).run()</div><div class="line">    uiThread &#123; longToast(&quot;Request performed&quot;) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>UIThread</code>有一个很不错的一点就是可以依赖于调用者。如果它是被一个<code>Activity</code>调用的，那么如果<code>activity.isFinishing()</code>返回<code>true</code>，则<code>uiThread</code>不会执行，这样就不会在<code>Activity</code>销毁的时候遇到崩溃的情况了。<br>假如你想使用<code>Future</code>来工作，<code>async</code>返回一个<code>Java Future</code>。而且如果你需要一个返回结果的<code>Future</code>，你可以使用<code>asyncResult</code>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+            <a href="/tags/Anko/" rel="tag"># Anko</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/01/function/" rel="next" title="JavaScript函数">
+                <i class="fa fa-chevron-left"></i> JavaScript函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wenzi" />
+          <p class="site-author-name" itemprop="name">wenzi</p>
+           
+              <p class="site-description motion-element" itemprop="description">是你。你会像他一样</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wenzi5519" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义函数"><span class="nav-text">定义函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型和变量"><span class="nav-text">基本类型和变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anko"><span class="nav-text">Anko</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenzi</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">访客:</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">总访客:</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

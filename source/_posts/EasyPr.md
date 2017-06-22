@@ -5,7 +5,7 @@ tags: [Android,EasyPr]
 categories: 笔记
 ---
 <blockquote class="blockquote-center">EasyPr<br/>
---站在巨人的肩膀上前行
+---站在巨人的肩膀上前行
 </blockquote>
 
 > 需要一个车牌识别功能，对比几家车牌识别，收费都挺高的，权衡下还是选择了使用EasyPr。
@@ -17,10 +17,10 @@ categories: 笔记
 ## 了解到的知识
 
 #### 如何打包so
-首先确认，你的**ndk-build.cmd**文件存在。  
-然后**win+R**，打开命令行窗口。  
-进入**jni**目录下。  
-运行**ndk-build.cmd**文件，等一会包就打好了，打好的包会在平级目录的libs下。
+- 首先确认，你的**ndk-build.cmd**文件存在。  
+- 然后**win+R**，打开命令行窗口。  
+- 进入**jni**目录下。  
+- 运行**ndk-build.cmd**文件，等一会包就打好了，打好的包会在平级目录的libs下。
 ![打包so](http://onifre9rp.bkt.clouddn.com/%E6%89%93%E5%8C%85so.png)
 
 #### 打包so时的配置文件 Android.mk

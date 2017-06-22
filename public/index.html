@@ -270,6 +270,382 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/22/EasyPr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wenzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="慎思而笃行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/22/EasyPr/" itemprop="url">
+                  EasyPr
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T16:21:51+08:00">
+                2017-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center">EasyPr<br><br>–站在巨人的肩膀上前行<br></blockquote>
+
+<blockquote>
+<p>需要一个车牌识别功能，对比几家车牌识别，收费都挺高的，权衡下还是选择了使用EasyPr。</p>
+</blockquote>
+<h2 id="查看github-Demo"><a href="#查看github-Demo" class="headerlink" title="查看github Demo"></a>查看github Demo</h2><p>从<a href="https://github.com/liuruoze/EasyPR" target="_blank" rel="external">EasyPr</a>的github上面看到，已经有大佬整合到<a href="https://github.com/linuxxx/EasyPR_Android" target="_blank" rel="external">Android</a>项目的demo，下载下来，运行，看效果。</p>
+<h2 id="了解到的知识"><a href="#了解到的知识" class="headerlink" title="了解到的知识"></a>了解到的知识</h2><h4 id="如何打包so"><a href="#如何打包so" class="headerlink" title="如何打包so"></a>如何打包so</h4><p>首先确认，你的<strong>ndk-build.cmd</strong>文件存在。<br>然后<strong>win+R</strong>，打开命令行窗口。<br>进入<strong>jni</strong>目录下。<br>运行<strong>ndk-build.cmd</strong>文件，等一会包就打好了，打好的包会在平级目录的libs下。<br><img src="http://onifre9rp.bkt.clouddn.com/%E6%89%93%E5%8C%85so.png" alt="打包so"></p>
+<h4 id="打包so时的配置文件-Android-mk"><a href="#打包so时的配置文件-Android-mk" class="headerlink" title="打包so时的配置文件 Android.mk"></a>打包so时的配置文件 Android.mk</h4><p><a href="https://developer.android.com/ndk/guides/android_mk.html?hl=zh-cn" target="_blank" rel="external">Android Api</a>参考官方api</p>
+<p> Android.mk 文件用于定义 Application.mk、构建系统和环境变量所未定义的项目范围设置。 它还可替换特定模块的项目范围设置。  </p>
+<p><strong>LOCAL_PATH</strong> 变量,表示源文件在开发树中的位置。在这里，构建系统提供的宏函数 my-dir 将返回当前目录（包含 Android.mk 文件本身的目录）的路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH := $(call my-dir)</div></pre></td></tr></table></figure></p>
+<p><strong>LOCAL_MODULE</strong> 变量将存储您要构建的模块的名称。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LOCAL_MODULE := hello-jni</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注：如果模块名称的开头已是 lib，则构建系统不会附加额外的前缀 lib；而是按原样采用模块名称，并添加 .so 扩展名。 因此，比如原来名为 libfoo.c 的源文件仍会生成名为 libfoo.so 的共享对象文件。 此行为是为了支持 Android 平台源文件从 Android.mk 文件生成的库；所有这些库的名称都以 lib 开头。</p>
+</blockquote>
+<p><strong>TARGET_PLATFORM</strong>作为构建系统目标的 Android API 级别号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TARGET_PLATFORM := android-22</div></pre></td></tr></table></figure></p>
+<p><strong>TARGET_ABI</strong>目标 Android API 级别与 ABI 的联接，特别适用于要针对实际设备测试特定目标系统映像的情况。 例如，要指定在 Android API 级别 22 上运行的 64 位 ARM 设备：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TARGET_ABI := android-22-arm64-v8a</div></pre></td></tr></table></figure></p>
+<p><strong>APP_ABI</strong>指定不同的ABI<br>指令集|值<br>—|—<br>基于 ARMv7 的设备上的硬件 FPU 指令|    APP_ABI := armeabi-v7a<br>ARMv8 AArch64    |APP_ABI := arm64-v8a<br>IA-32|    APP_ABI := x86<br>Intel64    |APP_ABI := x86_64<br>MIPS32    |APP_ABI := mips<br>MIPS64 (r6)    |APP_ABI := mips64<br>所有支持的指令集    |APP_ABI := all</p>
+<blockquote>
+<p>注：all 从 NDKr7 开始可用。</p>
+</blockquote>
+<p><strong>APP_STL</strong>变量指定要使用的运行时。 使用表中“名称”列中的值作为您的设置。 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">APP_STL := gnustl_static</div></pre></td></tr></table></figure></p>
+<p>只能为应用选择一个运行时，并且只能在 Application.mk 中选择。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>libstdc++（默认）</td>
+<td>默认最小系统 C++ 运行时库。</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>gabi++_static</td>
+<td>GAbi++ 运行时（静态）。</td>
+<td>C++ 异常和 RTTI</td>
+</tr>
+<tr>
+<td>gabi++_shared</td>
+<td>GAbi++ 运行时（共享）。</td>
+<td>C++ 异常和 RTTI</td>
+</tr>
+<tr>
+<td>stlport_static</td>
+<td>STLport 运行时（静态）。</td>
+<td>C++ 异常和 RTTI；标准库</td>
+</tr>
+<tr>
+<td>stlport_shared</td>
+<td>STLport 运行时（共享）。</td>
+<td>C++ 异常和 RTTI；标准库</td>
+</tr>
+<tr>
+<td>gnustl_static</td>
+<td>GNU STL（静态）。</td>
+<td>C++ 异常和 RTTI；标准库</td>
+</tr>
+<tr>
+<td>gnustl_shared</td>
+<td>GNU STL（共享）。</td>
+<td>C++ 异常和 RTTI；标准库</td>
+</tr>
+<tr>
+<td>c++_static</td>
+<td>LLVM libc++ 运行时（静态）。</td>
+<td>C++ 异常和 RTTI；标准库</td>
+</tr>
+<tr>
+<td>c++_shared</td>
+<td>LLVM libc++ 运行时（共享）。</td>
+<td>C++ 异常和 RTTI；标准库</td>
+</tr>
+</tbody>
+</table>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h4 id="第一个问题"><a href="#第一个问题" class="headerlink" title="第一个问题"></a>第一个问题</h4><p>刚下载好的demo，跑不起来，仔细看了一下,因为是用的Windows环境做开发，所以<strong>ndk-build.cmd</strong>要加<strong>.cmd</strong>的后缀。</p>
+<p>解决了项目报错问题，然后发现，文件存储的路径是19版本的，为了兼容更低的版本，把文件存储路径顺手改掉。</p>
+<p>运行，很愉快，没有在出现什么问题。</p>
+<h4 id="第二个问题"><a href="#第二个问题" class="headerlink" title="第二个问题"></a>第二个问题</h4><p>demo是拍照识别的，但是老大希望做成扫描识别的，好吧。<br>下载一个二维码识别demo，然后研究了一下二维码demo，然后把两个demo整合到一起了，把相机返回的图片，在进行二次截图，缩小识别范围（EasyPr的AndroidDemo就是这么做的），然后保存到文件中，然后识别，识别后的结果用正则效验，返回准确车牌，然后将结果展示到界面，并停止扫描。</p>
+<h4 id="第三个问题"><a href="#第三个问题" class="headerlink" title="第三个问题"></a>第三个问题</h4><p>运行了整合扫描的项目，发现识别率变得特别低，排查发现，原二维码扫描，会保存，灰度图，导致EasyPr识别率变低。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static Bitmap createBitmap (int[] colors, int width, int height, Bitmap.Config config) </div><div class="line">这个函数根据颜色数组来创建位图，注意:颜色数组的长度&gt;=width*height</div><div class="line"></div><div class="line">此函数创建位图的过程可以简单概括为为:更加width和height创建空位图，然后用指定的颜色数组colors来从左到右从上至下一次填充颜色。config是一个枚举，可以用它来指定位图“质量”。</div><div class="line"></div><div class="line">public static Bitmap createBitmap (int[] colors, int offset, int stride, int width, int height, Bitmap.Config config)</div><div class="line">此方法与2类似，但我还不明白offset和stride的作用</div></pre></td></tr></table></figure></p>
+<p>传入灰白两个颜色<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public int[] renderThumbnail() &#123;</div><div class="line">		int width = getWidth() / THUMBNAIL_SCALE_FACTOR;</div><div class="line">		int height = getHeight() / THUMBNAIL_SCALE_FACTOR;</div><div class="line">		int[] pixels = new int[width * height];</div><div class="line">		byte[] yuv = yuvData;</div><div class="line">		int inputOffset = top * dataWidth + left;</div><div class="line"></div><div class="line">		for (int y = 0; y &lt; height; y++) &#123;</div><div class="line">			int outputOffset = y * width;</div><div class="line">			for (int x = 0; x &lt; width; x++) &#123;</div><div class="line">				int grey = yuv[inputOffset + x * THUMBNAIL_SCALE_FACTOR] &amp; 0xff;</div><div class="line">				pixels[outputOffset + x] = 0xFF000000 | (grey * 0x00010101);</div><div class="line">			&#125;</div><div class="line">			inputOffset += dataWidth * THUMBNAIL_SCALE_FACTOR;</div><div class="line">		&#125;</div><div class="line">		return pixels;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>于是改掉，完成。</p>
+<h4 id="第四个问题"><a href="#第四个问题" class="headerlink" title="第四个问题"></a>第四个问题</h4><p>移植的时候要注意，包名保持一致，否者无法加载jni的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Java_com_aiseminar_EasyPR_PlateRecognizer_initPR</div></pre></td></tr></table></figure></p>
+<h4 id="第五个问题"><a href="#第五个问题" class="headerlink" title="第五个问题"></a>第五个问题</h4><p>Demo基本就完成了，接下来是往项目中添加了。<br>这个时候遇到了这次最大的问题。<br>我的测试设备有一台酷派的平板。悲剧了打包好的so包，在其他设备上都可以使用，唯独这台平板，怎么着都找不到so。<br>算是学习的机会吧，又看了看so打包方法和一些相关的内容。然鹅，并没有用。。<br>最后在同事的帮助下，发现是因为<strong>EasyPr</strong>的so中调用了<strong>Opencv</strong>的so包，导致<strong>Opencv</strong>的so包加载失败。<br>于是代码改成主动加载<strong>opencv_java3</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">static &#123;</div><div class="line">       try &#123;</div><div class="line">           System.loadLibrary(&quot;opencv_java3&quot;);</div><div class="line">           System.loadLibrary(&quot;EasyPR&quot;);</div><div class="line">       &#125; catch (UnsatisfiedLinkError ule) &#123;</div><div class="line">           System.err.println(&quot;WARNING: Could not load library!&quot;);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>吐槽一下，国内的各种系统真的是<strong>深度定制</strong>啊!</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/2017-5-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wenzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="慎思而笃行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/08/2017-5-8/" itemprop="url">
+                  Android 零碎小笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-08T16:57:08+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1、Android中不建议使用枚举<strong>Enum</strong>类型，枚举的内存消耗是静态常量的两倍，因此Android中如果需要使用枚举的时候可以选择使用<strong>@IntDef</strong>注解</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/24/2017-4-24/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -293,7 +669,7 @@
               
                 
                 <a class="post-title-link" href="/2017/04/24/2017-4-24/" itemprop="url">
-                  kotlin基础语法 01
+                  kotlin基础语法 02
                 </a>
               
             
@@ -372,6 +748,26 @@
             <blockquote>
 <p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。</p>
 </blockquote>
+<h2 id="数据类"><a href="#数据类" class="headerlink" title="数据类"></a>数据类</h2><p>定义一个数据类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data class Forecast(val date: Date, val temperature: Float, val details: String)</div></pre></td></tr></table></figure></p>
+<p><strong>额外的函数</strong><br>通过数据类，我们可以获得一些额外的函数</p>
+<ul>
+<li>equals()</li>
+<li>hashCode()</li>
+<li>copy():可以拷贝一个对象，并根据实际需求更改属性</li>
+<li>映射对象到变量中的函数</li>
+</ul>
+<p><strong>复制一个数据类</strong><br>如果我们需要修改一个属性可以这样做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val f1 = Forecast(Date(), 27.5f, &quot;Shiny day&quot;)</div><div class="line">val f2 = f1.copy(temperature = 30f)</div></pre></td></tr></table></figure></p>
+<p>这样我们就只修改了一个属性，而并没有动其他属性<br><strong>映射对象到变量中的函数</strong><br>映射对象的每一个属性到一个变量中，这个过程就是我们知道的多声明。<br>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">val f1 = Forecast(Date(), 27.5f, &quot;Shiny day&quot;)</div><div class="line">val (date, temperature, details) = f1</div><div class="line">//上面这个多声明会被编译成下面的代码:</div><div class="line">val date = f1.component1()</div><div class="line">val temperature = f1.component2()</div><div class="line">val details = f1.component3()</div><div class="line">//然后我们可以直接使用</div><div class="line">toast(details)</div></pre></td></tr></table></figure></p>
+<p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//Map类含有一些扩展函数的实现，允许它在迭代时使用key和value</div><div class="line">for ((key, value) in map) &#123;</div><div class="line">    Log.d(&quot;map&quot;, &quot;key:$key, value:$value&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Companion objects</strong><br>这个对象被这个类的所有对象所共享，就像java中的静态属性或者方法</p>
+<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><p><strong>简化setOnClickListener()</strong><br>一般情况下，我们实现一个<code>OnClickListener</code>方法需要以下的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//定义一个接口</div><div class="line">public interface OnClickListener &#123;</div><div class="line">    void onClick(View v);</div><div class="line">&#125;</div><div class="line">···</div><div class="line">//匿名内部类实现接口</div><div class="line">view.setOnClickListener(new OnClickListener()&#123;</div><div class="line">    @Override</div><div class="line">    public void onClick(View v) &#123;</div><div class="line">        Toast.makeText(v.getContext(), &quot;Click&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>如果用kotlin来写的话<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener(object : OnClickListener &#123;</div><div class="line">    override fun onClick(v: View) &#123;</div><div class="line">        toast(&quot;Click&quot;) //Anko的toast函数</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Kotlin允许Java库的一些优化，Interface中包含单个函数可以被替代为一个函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fun setOnClickListener(listener: (View) -&gt; Unit)</div></pre></td></tr></table></figure></p>
+<p>一个lambda表达式通过参数的形式被定义在箭头的左边（被圆括号包围），然后在箭头的右边返回结果值。在这个例子中，我们接收一个View，然后返回一个Unit（没有东西）。所以根据这种思想，我们可以把前面的代码简化成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener(&#123; view -&gt; toast(&quot;Click&quot;)&#125;)</div></pre></td></tr></table></figure></p>
+<p>如果左边的参数没有使用到，我们甚至可以省略左边的参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener(&#123; toast(&quot;Click&quot;) &#125;)</div></pre></td></tr></table></figure></p>
+<p>如果这个函数的最后一个参数是一个函数，我们可以把这个函数移动到圆括号外面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener() &#123; toast(&quot;Click&quot;) &#125;</div></pre></td></tr></table></figure></p>
+<p>最后，如果这个函数只有一个参数，我们可以省略这个圆括号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener &#123; toast(&quot;Click&quot;) &#125;</div></pre></td></tr></table></figure></p>
+<p>so，真是超级简洁<br>还有一点<br>如果这个函数只接收一个参数，那我们可以使用it引用，而不用去指定左边的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener &#123; toast(&quot;view id=&gt;&quot;+it.id) &#125;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -533,14 +929,14 @@
 <p>shl(bits) – signed shift left (Java’s &lt;&lt;)<br>shr(bits) – signed shift right (Java’s &gt;&gt;)<br>ushr(bits) – unsigned shift right (Java’s &gt;&gt;&gt;)<br>and(bits) – bitwise and<br>or(bits) – bitwise or<br>xor(bits) – bitwise xor<br>inv() – bitwise inversion</p>
 </blockquote>
 <p>字符串：<br><code>String</code> 字符串可以像数组一样，通过下标访问到数据</p>
-<p>变量：<br>变量使用关键字 <code>var</code> 和<code>val</code>定义<br>一个重要的概念是：尽可能地使用val </p>
+<p>变量：<br>变量使用关键字 <code>var</code> 和<code>val</code>定义<br><code>val</code>为不可变量，也可以认为是线程安全的，因为无法改变，所以也不需要定义访问控制<br>一个重要的概念是：尽可能地使用val </p>
 <p>属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Person&#123;</div><div class="line">    var name: String=&quot;&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">var person=Person()</div><div class="line">person.name=&quot;jack&quot;</div><div class="line">val name=person.name</div></pre></td></tr></table></figure></p>
 <p>如果没有指定，属性会默认使用<code>getter</code>和<code>setter</code>方法。可以自己指定成自定义的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public classs Person &#123;</div><div class="line">    var name: String = &quot;&quot;</div><div class="line">        get() = field.toUpperCase()</div><div class="line">        set(value)&#123;</div><div class="line">            field = &quot;Name: $value&quot;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="Anko"><a href="#Anko" class="headerlink" title="Anko"></a>Anko</h2><p>Anko是JetBrains开发的用来代替xml生成ui布局的库。<br>Anko使用扩展函数在Android框架中增添了一些新的功能<br>比如一个Anko扩展函数可以被用来简化获取一个RecyclerView：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">val forecastList: RecyclerView = find(R.id.forecast_list)</div></pre></td></tr></table></figure></p>
 <p><strong>扩展函数</strong><br>扩展函数是指在一个类上增加一种新的行为，甚至我们没有这个类代码的访问权限。<br>Kotlin中扩展函数的一个优势是我们不需要再调用方法的时候吧整个对象当做参数传入。<br>扩展函数表现的就像是属于这个类的一样，而且我们可以使用<code>this</code>关键字和调用所有的public方法<br>举个栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun Context.toast(message:CharAequence,duration:Int=Toast.LENGTH_SHORT)&#123;</div><div class="line">    Toast.makeText(this,message,druation).show()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这个方法可以在Activity内部直接使用，不需要传入context<br>Anko已经包括了自己的toast扩展函数，跟上面这个很相似。Anko提供了一些针对CharSequence和resource的函数，还有两个不同的toast和longToast方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toast(&quot;Hello world!&quot;)</div><div class="line">longToast(R.id.hello_world)</div></pre></td></tr></table></figure></p>
 <p><strong>api请求</strong><br>kotlin提供的扩展函数让请求变得更加简单。<br>再举个栗子：<br>先创建一个Request类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class Request(val url: String) &#123;</div><div class="line">    public fun run() &#123;</div><div class="line">        val forecastJsonStr = URL(url).readText()</div><div class="line">        Log.d(javaClass.simpleName, forecastJsonStr)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>请求很简单地接收一个url，然后读取结果并在logcat上打印json。实现非常简单，因为我们使用<code>readText</code>，这是Kotlin标准库中的扩展函数。这个方法不推荐结果很大的响应，但是在我们这个例子中已经足够好了。<br><strong>异步请求</strong><br>anko提供了非常简单的DSL来处理异步任务，可以满足大部分的需求。<br>提供<code>async</code>函数执行异步线程，通过<code>UIThread</code>的方式回到主线程。一个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">async() &#123;</div><div class="line">    Request(url).run()</div><div class="line">    uiThread &#123; longToast(&quot;Request performed&quot;) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>请求很简单地接收一个url，然后读取结果并在logcat上打印json。实现非常简单，因为我们使用<code>readText</code>，这是Kotlin标准库中的扩展函数。这个方法不推荐结果很大的响应，但是在我们这个例子中已经足够好了。<br><strong>异步请求</strong><br>anko提供了非常简单的DSL来处理异步任务，可以满足大部分的需求。<br>提供<code>async</code>函数执行异步线程，通过<code>UIThread</code>的方式回到主线程。一个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">doAsync() &#123;</div><div class="line">    Request(url).run()</div><div class="line">    uiThread &#123; longToast(&quot;Request performed&quot;) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>UIThread</code>有一个很不错的一点就是可以依赖于调用者。如果它是被一个<code>Activity</code>调用的，那么如果<code>activity.isFinishing()</code>返回<code>true</code>，则<code>uiThread</code>不会执行，这样就不会在<code>Activity</code>销毁的时候遇到崩溃的情况了。<br>假如你想使用<code>Future</code>来工作，<code>async</code>返回一个<code>Java Future</code>。而且如果你需要一个返回结果的<code>Future</code>，你可以使用<code>asyncResult</code>。</p>
 
           
@@ -1137,7 +1533,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1159,7 +1555,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

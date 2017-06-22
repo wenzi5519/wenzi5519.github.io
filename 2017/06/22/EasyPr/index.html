@@ -87,35 +87,17 @@
 
 
 
-<meta name="description" content="EasyPr–站在巨人的肩膀上前行
-
-
-需要一个车牌识别功能，对比几家车牌识别，收费都挺高的，权衡下还是选择了使用EasyPr。
-
-查看github Demo从EasyPr的github上面看到，已经有大佬整合到Android项目的demo，下载下来，运行，看效果。
-了解到的知识如何打包so首先确认，你的ndk-build.cmd文件存在。然后win+R，打开命令行窗口。进入jni目录下。运行nd">
+<meta name="description" content="EasyPr—站在巨人的肩膀上前行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EasyPr">
 <meta property="og:url" content="http://yoursite.com/2017/06/22/EasyPr/index.html">
 <meta property="og:site_name" content="慎思而笃行">
-<meta property="og:description" content="EasyPr–站在巨人的肩膀上前行
-
-
-需要一个车牌识别功能，对比几家车牌识别，收费都挺高的，权衡下还是选择了使用EasyPr。
-
-查看github Demo从EasyPr的github上面看到，已经有大佬整合到Android项目的demo，下载下来，运行，看效果。
-了解到的知识如何打包so首先确认，你的ndk-build.cmd文件存在。然后win+R，打开命令行窗口。进入jni目录下。运行nd">
+<meta property="og:description" content="EasyPr—站在巨人的肩膀上前行">
 <meta property="og:image" content="http://onifre9rp.bkt.clouddn.com/%E6%89%93%E5%8C%85so.png">
-<meta property="og:updated_time" content="2017-06-22T08:26:03.198Z">
+<meta property="og:updated_time" content="2017-06-22T09:04:21.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EasyPr">
-<meta name="twitter:description" content="EasyPr–站在巨人的肩膀上前行
-
-
-需要一个车牌识别功能，对比几家车牌识别，收费都挺高的，权衡下还是选择了使用EasyPr。
-
-查看github Demo从EasyPr的github上面看到，已经有大佬整合到Android项目的demo，下载下来，运行，看效果。
-了解到的知识如何打包so首先确认，你的ndk-build.cmd文件存在。然后win+R，打开命令行窗口。进入jni目录下。运行nd">
+<meta name="twitter:description" content="EasyPr—站在巨人的肩膀上前行">
 <meta name="twitter:image" content="http://onifre9rp.bkt.clouddn.com/%E6%89%93%E5%8C%85so.png">
 
 
@@ -388,13 +370,17 @@
       
 
       
-        <blockquote class="blockquote-center">EasyPr<br><br>–站在巨人的肩膀上前行<br></blockquote>
-
+        <p><blockquote class="blockquote-center">EasyPr<br><br>—站在巨人的肩膀上前行<br></blockquote><br><a id="more"></a></p>
 <blockquote>
 <p>需要一个车牌识别功能，对比几家车牌识别，收费都挺高的，权衡下还是选择了使用EasyPr。</p>
 </blockquote>
 <h2 id="查看github-Demo"><a href="#查看github-Demo" class="headerlink" title="查看github Demo"></a>查看github Demo</h2><p>从<a href="https://github.com/liuruoze/EasyPR" target="_blank" rel="external">EasyPr</a>的github上面看到，已经有大佬整合到<a href="https://github.com/linuxxx/EasyPR_Android" target="_blank" rel="external">Android</a>项目的demo，下载下来，运行，看效果。</p>
-<h2 id="了解到的知识"><a href="#了解到的知识" class="headerlink" title="了解到的知识"></a>了解到的知识</h2><h4 id="如何打包so"><a href="#如何打包so" class="headerlink" title="如何打包so"></a>如何打包so</h4><p>首先确认，你的<strong>ndk-build.cmd</strong>文件存在。<br>然后<strong>win+R</strong>，打开命令行窗口。<br>进入<strong>jni</strong>目录下。<br>运行<strong>ndk-build.cmd</strong>文件，等一会包就打好了，打好的包会在平级目录的libs下。<br><img src="http://onifre9rp.bkt.clouddn.com/%E6%89%93%E5%8C%85so.png" alt="打包so"></p>
+<h2 id="了解到的知识"><a href="#了解到的知识" class="headerlink" title="了解到的知识"></a>了解到的知识</h2><h4 id="如何打包so"><a href="#如何打包so" class="headerlink" title="如何打包so"></a>如何打包so</h4><ul>
+<li>首先确认，你的<strong>ndk-build.cmd</strong>文件存在。  </li>
+<li>然后<strong>win+R</strong>，打开命令行窗口。  </li>
+<li>进入<strong>jni</strong>目录下。  </li>
+<li>运行<strong>ndk-build.cmd</strong>文件，等一会包就打好了，打好的包会在平级目录的libs下。<br><img src="http://onifre9rp.bkt.clouddn.com/%E6%89%93%E5%8C%85so.png" alt="打包so"></li>
+</ul>
 <h4 id="打包so时的配置文件-Android-mk"><a href="#打包so时的配置文件-Android-mk" class="headerlink" title="打包so时的配置文件 Android.mk"></a>打包so时的配置文件 Android.mk</h4><p><a href="https://developer.android.com/ndk/guides/android_mk.html?hl=zh-cn" target="_blank" rel="external">Android Api</a>参考官方api</p>
 <p> Android.mk 文件用于定义 Application.mk、构建系统和环境变量所未定义的项目范围设置。 它还可替换特定模块的项目范围设置。  </p>
 <p><strong>LOCAL_PATH</strong> 变量,表示源文件在开发树中的位置。在这里，构建系统提供的宏函数 my-dir 将返回当前目录（包含 Android.mk 文件本身的目录）的路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH := $(call my-dir)</div></pre></td></tr></table></figure></p>
@@ -404,7 +390,45 @@
 </blockquote>
 <p><strong>TARGET_PLATFORM</strong>作为构建系统目标的 Android API 级别号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TARGET_PLATFORM := android-22</div></pre></td></tr></table></figure></p>
 <p><strong>TARGET_ABI</strong>目标 Android API 级别与 ABI 的联接，特别适用于要针对实际设备测试特定目标系统映像的情况。 例如，要指定在 Android API 级别 22 上运行的 64 位 ARM 设备：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TARGET_ABI := android-22-arm64-v8a</div></pre></td></tr></table></figure></p>
-<p><strong>APP_ABI</strong>指定不同的ABI<br>指令集|值<br>—|—<br>基于 ARMv7 的设备上的硬件 FPU 指令|    APP_ABI := armeabi-v7a<br>ARMv8 AArch64    |APP_ABI := arm64-v8a<br>IA-32|    APP_ABI := x86<br>Intel64    |APP_ABI := x86_64<br>MIPS32    |APP_ABI := mips<br>MIPS64 (r6)    |APP_ABI := mips64<br>所有支持的指令集    |APP_ABI := all</p>
+<p><strong>APP_ABI</strong>指定不同的ABI</p>
+<table>
+<thead>
+<tr>
+<th>指令集</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基于 ARMv7 的设备上的硬件 FPU 指令</td>
+<td>APP_ABI := armeabi-v7a</td>
+</tr>
+<tr>
+<td>ARMv8 AArch64</td>
+<td>APP_ABI := arm64-v8a</td>
+</tr>
+<tr>
+<td>IA-32</td>
+<td>APP_ABI := x86</td>
+</tr>
+<tr>
+<td>Intel64</td>
+<td>APP_ABI := x86_64</td>
+</tr>
+<tr>
+<td>MIPS32</td>
+<td>APP_ABI := mips</td>
+</tr>
+<tr>
+<td>MIPS64 (r6)</td>
+<td>APP_ABI := mips64</td>
+</tr>
+<tr>
+<td>所有支持的指令集</td>
+<td>APP_ABI := all</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>注：all 从 NDKr7 开始可用。</p>
 </blockquote>

@@ -87,25 +87,16 @@
 
 
 
-<meta name="description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。
-
-类1、定义类使用关键字 class1class MainActivity&amp;#123;&amp;#125;
-2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号1class P">
+<meta name="description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kotlin基础语法 01">
 <meta property="og:url" content="http://yoursite.com/2017/04/19/kotlin/index.html">
 <meta property="og:site_name" content="慎思而笃行">
-<meta property="og:description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。
-
-类1、定义类使用关键字 class1class MainActivity&amp;#123;&amp;#125;
-2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号1class P">
-<meta property="og:updated_time" content="2017-05-10T09:35:28.000Z">
+<meta property="og:description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。">
+<meta property="og:updated_time" content="2017-06-22T09:04:47.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kotlin基础语法 01">
-<meta name="twitter:description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。
-
-类1、定义类使用关键字 class1class MainActivity&amp;#123;&amp;#125;
-2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号1class P">
+<meta name="twitter:description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。">
 
 
 
@@ -378,9 +369,9 @@
 
       
         <blockquote>
-<p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。</p>
-</blockquote>
+<p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。<br><a id="more"></a></p>
 <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>1、定义类使用关键字 <code>class</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class MainActivity&#123;&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
 <p>2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class Person(name:String,age:Int)</div></pre></td></tr></table></figure></p>
 <p>可以在<code>init</code>块中写构造函数的函数体<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Person(name:String,age:Int)&#123;</div><div class="line">    init&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>3、继承<br>父类需要使用关键字 open 声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">open class Anmina(name:String)</div><div class="line"></div><div class="line">class Person(age:Int): Anmina(name)</div></pre></td></tr></table></figure></p>

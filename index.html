@@ -368,100 +368,14 @@
 
       
         
-          
-            <blockquote class="blockquote-center">EasyPr<br><br>–站在巨人的肩膀上前行<br></blockquote>
-
-<blockquote>
-<p>需要一个车牌识别功能，对比几家车牌识别，收费都挺高的，权衡下还是选择了使用EasyPr。</p>
-</blockquote>
-<h2 id="查看github-Demo"><a href="#查看github-Demo" class="headerlink" title="查看github Demo"></a>查看github Demo</h2><p>从<a href="https://github.com/liuruoze/EasyPR" target="_blank" rel="external">EasyPr</a>的github上面看到，已经有大佬整合到<a href="https://github.com/linuxxx/EasyPR_Android" target="_blank" rel="external">Android</a>项目的demo，下载下来，运行，看效果。</p>
-<h2 id="了解到的知识"><a href="#了解到的知识" class="headerlink" title="了解到的知识"></a>了解到的知识</h2><h4 id="如何打包so"><a href="#如何打包so" class="headerlink" title="如何打包so"></a>如何打包so</h4><p>首先确认，你的<strong>ndk-build.cmd</strong>文件存在。<br>然后<strong>win+R</strong>，打开命令行窗口。<br>进入<strong>jni</strong>目录下。<br>运行<strong>ndk-build.cmd</strong>文件，等一会包就打好了，打好的包会在平级目录的libs下。<br><img src="http://onifre9rp.bkt.clouddn.com/%E6%89%93%E5%8C%85so.png" alt="打包so"></p>
-<h4 id="打包so时的配置文件-Android-mk"><a href="#打包so时的配置文件-Android-mk" class="headerlink" title="打包so时的配置文件 Android.mk"></a>打包so时的配置文件 Android.mk</h4><p><a href="https://developer.android.com/ndk/guides/android_mk.html?hl=zh-cn" target="_blank" rel="external">Android Api</a>参考官方api</p>
-<p> Android.mk 文件用于定义 Application.mk、构建系统和环境变量所未定义的项目范围设置。 它还可替换特定模块的项目范围设置。  </p>
-<p><strong>LOCAL_PATH</strong> 变量,表示源文件在开发树中的位置。在这里，构建系统提供的宏函数 my-dir 将返回当前目录（包含 Android.mk 文件本身的目录）的路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH := $(call my-dir)</div></pre></td></tr></table></figure></p>
-<p><strong>LOCAL_MODULE</strong> 变量将存储您要构建的模块的名称。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LOCAL_MODULE := hello-jni</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注：如果模块名称的开头已是 lib，则构建系统不会附加额外的前缀 lib；而是按原样采用模块名称，并添加 .so 扩展名。 因此，比如原来名为 libfoo.c 的源文件仍会生成名为 libfoo.so 的共享对象文件。 此行为是为了支持 Android 平台源文件从 Android.mk 文件生成的库；所有这些库的名称都以 lib 开头。</p>
-</blockquote>
-<p><strong>TARGET_PLATFORM</strong>作为构建系统目标的 Android API 级别号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TARGET_PLATFORM := android-22</div></pre></td></tr></table></figure></p>
-<p><strong>TARGET_ABI</strong>目标 Android API 级别与 ABI 的联接，特别适用于要针对实际设备测试特定目标系统映像的情况。 例如，要指定在 Android API 级别 22 上运行的 64 位 ARM 设备：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TARGET_ABI := android-22-arm64-v8a</div></pre></td></tr></table></figure></p>
-<p><strong>APP_ABI</strong>指定不同的ABI<br>指令集|值<br>—|—<br>基于 ARMv7 的设备上的硬件 FPU 指令|    APP_ABI := armeabi-v7a<br>ARMv8 AArch64    |APP_ABI := arm64-v8a<br>IA-32|    APP_ABI := x86<br>Intel64    |APP_ABI := x86_64<br>MIPS32    |APP_ABI := mips<br>MIPS64 (r6)    |APP_ABI := mips64<br>所有支持的指令集    |APP_ABI := all</p>
-<blockquote>
-<p>注：all 从 NDKr7 开始可用。</p>
-</blockquote>
-<p><strong>APP_STL</strong>变量指定要使用的运行时。 使用表中“名称”列中的值作为您的设置。 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">APP_STL := gnustl_static</div></pre></td></tr></table></figure></p>
-<p>只能为应用选择一个运行时，并且只能在 Application.mk 中选择。</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>libstdc++（默认）</td>
-<td>默认最小系统 C++ 运行时库。</td>
-<td>不适用</td>
-</tr>
-<tr>
-<td>gabi++_static</td>
-<td>GAbi++ 运行时（静态）。</td>
-<td>C++ 异常和 RTTI</td>
-</tr>
-<tr>
-<td>gabi++_shared</td>
-<td>GAbi++ 运行时（共享）。</td>
-<td>C++ 异常和 RTTI</td>
-</tr>
-<tr>
-<td>stlport_static</td>
-<td>STLport 运行时（静态）。</td>
-<td>C++ 异常和 RTTI；标准库</td>
-</tr>
-<tr>
-<td>stlport_shared</td>
-<td>STLport 运行时（共享）。</td>
-<td>C++ 异常和 RTTI；标准库</td>
-</tr>
-<tr>
-<td>gnustl_static</td>
-<td>GNU STL（静态）。</td>
-<td>C++ 异常和 RTTI；标准库</td>
-</tr>
-<tr>
-<td>gnustl_shared</td>
-<td>GNU STL（共享）。</td>
-<td>C++ 异常和 RTTI；标准库</td>
-</tr>
-<tr>
-<td>c++_static</td>
-<td>LLVM libc++ 运行时（静态）。</td>
-<td>C++ 异常和 RTTI；标准库</td>
-</tr>
-<tr>
-<td>c++_shared</td>
-<td>LLVM libc++ 运行时（共享）。</td>
-<td>C++ 异常和 RTTI；标准库</td>
-</tr>
-</tbody>
-</table>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h4 id="第一个问题"><a href="#第一个问题" class="headerlink" title="第一个问题"></a>第一个问题</h4><p>刚下载好的demo，跑不起来，仔细看了一下,因为是用的Windows环境做开发，所以<strong>ndk-build.cmd</strong>要加<strong>.cmd</strong>的后缀。</p>
-<p>解决了项目报错问题，然后发现，文件存储的路径是19版本的，为了兼容更低的版本，把文件存储路径顺手改掉。</p>
-<p>运行，很愉快，没有在出现什么问题。</p>
-<h4 id="第二个问题"><a href="#第二个问题" class="headerlink" title="第二个问题"></a>第二个问题</h4><p>demo是拍照识别的，但是老大希望做成扫描识别的，好吧。<br>下载一个二维码识别demo，然后研究了一下二维码demo，然后把两个demo整合到一起了，把相机返回的图片，在进行二次截图，缩小识别范围（EasyPr的AndroidDemo就是这么做的），然后保存到文件中，然后识别，识别后的结果用正则效验，返回准确车牌，然后将结果展示到界面，并停止扫描。</p>
-<h4 id="第三个问题"><a href="#第三个问题" class="headerlink" title="第三个问题"></a>第三个问题</h4><p>运行了整合扫描的项目，发现识别率变得特别低，排查发现，原二维码扫描，会保存，灰度图，导致EasyPr识别率变低。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static Bitmap createBitmap (int[] colors, int width, int height, Bitmap.Config config) </div><div class="line">这个函数根据颜色数组来创建位图，注意:颜色数组的长度&gt;=width*height</div><div class="line"></div><div class="line">此函数创建位图的过程可以简单概括为为:更加width和height创建空位图，然后用指定的颜色数组colors来从左到右从上至下一次填充颜色。config是一个枚举，可以用它来指定位图“质量”。</div><div class="line"></div><div class="line">public static Bitmap createBitmap (int[] colors, int offset, int stride, int width, int height, Bitmap.Config config)</div><div class="line">此方法与2类似，但我还不明白offset和stride的作用</div></pre></td></tr></table></figure></p>
-<p>传入灰白两个颜色<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public int[] renderThumbnail() &#123;</div><div class="line">		int width = getWidth() / THUMBNAIL_SCALE_FACTOR;</div><div class="line">		int height = getHeight() / THUMBNAIL_SCALE_FACTOR;</div><div class="line">		int[] pixels = new int[width * height];</div><div class="line">		byte[] yuv = yuvData;</div><div class="line">		int inputOffset = top * dataWidth + left;</div><div class="line"></div><div class="line">		for (int y = 0; y &lt; height; y++) &#123;</div><div class="line">			int outputOffset = y * width;</div><div class="line">			for (int x = 0; x &lt; width; x++) &#123;</div><div class="line">				int grey = yuv[inputOffset + x * THUMBNAIL_SCALE_FACTOR] &amp; 0xff;</div><div class="line">				pixels[outputOffset + x] = 0xFF000000 | (grey * 0x00010101);</div><div class="line">			&#125;</div><div class="line">			inputOffset += dataWidth * THUMBNAIL_SCALE_FACTOR;</div><div class="line">		&#125;</div><div class="line">		return pixels;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<p>于是改掉，完成。</p>
-<h4 id="第四个问题"><a href="#第四个问题" class="headerlink" title="第四个问题"></a>第四个问题</h4><p>移植的时候要注意，包名保持一致，否者无法加载jni的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Java_com_aiseminar_EasyPR_PlateRecognizer_initPR</div></pre></td></tr></table></figure></p>
-<h4 id="第五个问题"><a href="#第五个问题" class="headerlink" title="第五个问题"></a>第五个问题</h4><p>Demo基本就完成了，接下来是往项目中添加了。<br>这个时候遇到了这次最大的问题。<br>我的测试设备有一台酷派的平板。悲剧了打包好的so包，在其他设备上都可以使用，唯独这台平板，怎么着都找不到so。<br>算是学习的机会吧，又看了看so打包方法和一些相关的内容。然鹅，并没有用。。<br>最后在同事的帮助下，发现是因为<strong>EasyPr</strong>的so中调用了<strong>Opencv</strong>的so包，导致<strong>Opencv</strong>的so包加载失败。<br>于是代码改成主动加载<strong>opencv_java3</strong>  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">static &#123;</div><div class="line">       try &#123;</div><div class="line">           System.loadLibrary(&quot;opencv_java3&quot;);</div><div class="line">           System.loadLibrary(&quot;EasyPR&quot;);</div><div class="line">       &#125; catch (UnsatisfiedLinkError ule) &#123;</div><div class="line">           System.err.println(&quot;WARNING: Could not load library!&quot;);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>吐槽一下，国内的各种系统真的是<strong>深度定制</strong>啊!</p>
-</blockquote>
-
-          
+          <p><blockquote class="blockquote-center">EasyPr<br/><br>—站在巨人的肩膀上前行<br></blockquote><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/22/EasyPr/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -601,10 +515,14 @@
 
       
         
-          
-            <p>1、Android中不建议使用枚举<strong>Enum</strong>类型，枚举的内存消耗是静态常量的两倍，因此Android中如果需要使用枚举的时候可以选择使用<strong>@IntDef</strong>注解</p>
-
-          
+          <p><blockquote class="blockquote-center">Android 零碎小笔记<br></blockquote><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/08/2017-5-8/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -744,32 +662,15 @@
 
       
         
-          
-            <blockquote>
-<p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。</p>
-</blockquote>
-<h2 id="数据类"><a href="#数据类" class="headerlink" title="数据类"></a>数据类</h2><p>定义一个数据类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data class Forecast(val date: Date, val temperature: Float, val details: String)</div></pre></td></tr></table></figure></p>
-<p><strong>额外的函数</strong><br>通过数据类，我们可以获得一些额外的函数</p>
-<ul>
-<li>equals()</li>
-<li>hashCode()</li>
-<li>copy():可以拷贝一个对象，并根据实际需求更改属性</li>
-<li>映射对象到变量中的函数</li>
-</ul>
-<p><strong>复制一个数据类</strong><br>如果我们需要修改一个属性可以这样做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val f1 = Forecast(Date(), 27.5f, &quot;Shiny day&quot;)</div><div class="line">val f2 = f1.copy(temperature = 30f)</div></pre></td></tr></table></figure></p>
-<p>这样我们就只修改了一个属性，而并没有动其他属性<br><strong>映射对象到变量中的函数</strong><br>映射对象的每一个属性到一个变量中，这个过程就是我们知道的多声明。<br>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">val f1 = Forecast(Date(), 27.5f, &quot;Shiny day&quot;)</div><div class="line">val (date, temperature, details) = f1</div><div class="line">//上面这个多声明会被编译成下面的代码:</div><div class="line">val date = f1.component1()</div><div class="line">val temperature = f1.component2()</div><div class="line">val details = f1.component3()</div><div class="line">//然后我们可以直接使用</div><div class="line">toast(details)</div></pre></td></tr></table></figure></p>
-<p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//Map类含有一些扩展函数的实现，允许它在迭代时使用key和value</div><div class="line">for ((key, value) in map) &#123;</div><div class="line">    Log.d(&quot;map&quot;, &quot;key:$key, value:$value&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>Companion objects</strong><br>这个对象被这个类的所有对象所共享，就像java中的静态属性或者方法</p>
-<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><p><strong>简化setOnClickListener()</strong><br>一般情况下，我们实现一个<code>OnClickListener</code>方法需要以下的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//定义一个接口</div><div class="line">public interface OnClickListener &#123;</div><div class="line">    void onClick(View v);</div><div class="line">&#125;</div><div class="line">···</div><div class="line">//匿名内部类实现接口</div><div class="line">view.setOnClickListener(new OnClickListener()&#123;</div><div class="line">    @Override</div><div class="line">    public void onClick(View v) &#123;</div><div class="line">        Toast.makeText(v.getContext(), &quot;Click&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>如果用kotlin来写的话<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener(object : OnClickListener &#123;</div><div class="line">    override fun onClick(v: View) &#123;</div><div class="line">        toast(&quot;Click&quot;) //Anko的toast函数</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Kotlin允许Java库的一些优化，Interface中包含单个函数可以被替代为一个函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fun setOnClickListener(listener: (View) -&gt; Unit)</div></pre></td></tr></table></figure></p>
-<p>一个lambda表达式通过参数的形式被定义在箭头的左边（被圆括号包围），然后在箭头的右边返回结果值。在这个例子中，我们接收一个View，然后返回一个Unit（没有东西）。所以根据这种思想，我们可以把前面的代码简化成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener(&#123; view -&gt; toast(&quot;Click&quot;)&#125;)</div></pre></td></tr></table></figure></p>
-<p>如果左边的参数没有使用到，我们甚至可以省略左边的参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener(&#123; toast(&quot;Click&quot;) &#125;)</div></pre></td></tr></table></figure></p>
-<p>如果这个函数的最后一个参数是一个函数，我们可以把这个函数移动到圆括号外面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener() &#123; toast(&quot;Click&quot;) &#125;</div></pre></td></tr></table></figure></p>
-<p>最后，如果这个函数只有一个参数，我们可以省略这个圆括号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener &#123; toast(&quot;Click&quot;) &#125;</div></pre></td></tr></table></figure></p>
-<p>so，真是超级简洁<br>还有一点<br>如果这个函数只接收一个参数，那我们可以使用it引用，而不用去指定左边的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view.setOnClickListener &#123; toast(&quot;view id=&gt;&quot;+it.id) &#125;</div></pre></td></tr></table></figure></p>
-
-          
+          <blockquote>
+<p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/24/2017-4-24/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -909,37 +810,15 @@
 
       
         
-          
-            <blockquote>
-<p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。</p>
-</blockquote>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>1、定义类使用关键字 <code>class</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class MainActivity&#123;&#125;</div></pre></td></tr></table></figure></p>
-<p>2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class Person(name:String,age:Int)</div></pre></td></tr></table></figure></p>
-<p>可以在<code>init</code>块中写构造函数的函数体<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Person(name:String,age:Int)&#123;</div><div class="line">    init&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>3、继承<br>父类需要使用关键字 open 声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">open class Anmina(name:String)</div><div class="line"></div><div class="line">class Person(age:Int): Anmina(name)</div></pre></td></tr></table></figure></p>
-<p>但我们只有单个构造函数，需要从父类继承下来的构造器中指定需要的参数，替换<code>java</code>中的<code>super</code>调用的。</p>
-<h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><p>使用关键字 <code>fun</code><br>1、明确参数类型，返回值类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun sum(a:Int ,b:Int) :Int&#123;</div><div class="line">    return a+b</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>2、不指定返回值类型，可以使用表达式计算出来自行推断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fun sum (a:Int,b:Int) =a+b</div></pre></td></tr></table></figure></p>
-<p>3、函数可返回无意义的值，和java中<code>void</code>类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//没有返回值的函数，显式指定``Unit``为返回值  </div><div class="line">fun showAddResult(a: Int, b: Int): Unit &#123;  </div><div class="line">    println(a + b)  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">//没有返回值的函数，省略``Unit``的写法  </div><div class="line">fun showAddResult2(a: Int, b: Int) &#123;  </div><div class="line">    println(a + b)  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>4、<code>kotlin</code>中参数先写名称，在写泛型，而且可以给参数指定默认值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun toast(message:String,time:Int = Toast.LENGTH_SHORT)&#123;</div><div class="line">    Toast.makeText(this,message,time).show()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在上面的方法中，第二个参数制定了一个默认值，所以在调用该方法的时候我们，可以选择只传一个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toast(&quot;默认参数，吐司测试&quot;)</div><div class="line">toast(&quot;传参，吐司测试&quot;,3)</div></pre></td></tr></table></figure></p>
-<h2 id="基本类型和变量"><a href="#基本类型和变量" class="headerlink" title="基本类型和变量"></a>基本类型和变量</h2><p>类型：<br>数字类型不会自动转型。需要使用相应的方法操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val i:Int=5</div><div class="line">val d:Double=i.toDouble()</div></pre></td></tr></table></figure></p>
-<p>运算符：</p>
-<blockquote>
-<p>shl(bits) – signed shift left (Java’s &lt;&lt;)<br>shr(bits) – signed shift right (Java’s &gt;&gt;)<br>ushr(bits) – unsigned shift right (Java’s &gt;&gt;&gt;)<br>and(bits) – bitwise and<br>or(bits) – bitwise or<br>xor(bits) – bitwise xor<br>inv() – bitwise inversion</p>
-</blockquote>
-<p>字符串：<br><code>String</code> 字符串可以像数组一样，通过下标访问到数据</p>
-<p>变量：<br>变量使用关键字 <code>var</code> 和<code>val</code>定义<br><code>val</code>为不可变量，也可以认为是线程安全的，因为无法改变，所以也不需要定义访问控制<br>一个重要的概念是：尽可能地使用val </p>
-<p>属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Person&#123;</div><div class="line">    var name: String=&quot;&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">var person=Person()</div><div class="line">person.name=&quot;jack&quot;</div><div class="line">val name=person.name</div></pre></td></tr></table></figure></p>
-<p>如果没有指定，属性会默认使用<code>getter</code>和<code>setter</code>方法。可以自己指定成自定义的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public classs Person &#123;</div><div class="line">    var name: String = &quot;&quot;</div><div class="line">        get() = field.toUpperCase()</div><div class="line">        set(value)&#123;</div><div class="line">            field = &quot;Name: $value&quot;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="Anko"><a href="#Anko" class="headerlink" title="Anko"></a>Anko</h2><p>Anko是JetBrains开发的用来代替xml生成ui布局的库。<br>Anko使用扩展函数在Android框架中增添了一些新的功能<br>比如一个Anko扩展函数可以被用来简化获取一个RecyclerView：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">val forecastList: RecyclerView = find(R.id.forecast_list)</div></pre></td></tr></table></figure></p>
-<p><strong>扩展函数</strong><br>扩展函数是指在一个类上增加一种新的行为，甚至我们没有这个类代码的访问权限。<br>Kotlin中扩展函数的一个优势是我们不需要再调用方法的时候吧整个对象当做参数传入。<br>扩展函数表现的就像是属于这个类的一样，而且我们可以使用<code>this</code>关键字和调用所有的public方法<br>举个栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun Context.toast(message:CharAequence,duration:Int=Toast.LENGTH_SHORT)&#123;</div><div class="line">    Toast.makeText(this,message,druation).show()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这个方法可以在Activity内部直接使用，不需要传入context<br>Anko已经包括了自己的toast扩展函数，跟上面这个很相似。Anko提供了一些针对CharSequence和resource的函数，还有两个不同的toast和longToast方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toast(&quot;Hello world!&quot;)</div><div class="line">longToast(R.id.hello_world)</div></pre></td></tr></table></figure></p>
-<p><strong>api请求</strong><br>kotlin提供的扩展函数让请求变得更加简单。<br>再举个栗子：<br>先创建一个Request类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class Request(val url: String) &#123;</div><div class="line">    public fun run() &#123;</div><div class="line">        val forecastJsonStr = URL(url).readText()</div><div class="line">        Log.d(javaClass.simpleName, forecastJsonStr)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>请求很简单地接收一个url，然后读取结果并在logcat上打印json。实现非常简单，因为我们使用<code>readText</code>，这是Kotlin标准库中的扩展函数。这个方法不推荐结果很大的响应，但是在我们这个例子中已经足够好了。<br><strong>异步请求</strong><br>anko提供了非常简单的DSL来处理异步任务，可以满足大部分的需求。<br>提供<code>async</code>函数执行异步线程，通过<code>UIThread</code>的方式回到主线程。一个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">doAsync() &#123;</div><div class="line">    Request(url).run()</div><div class="line">    uiThread &#123; longToast(&quot;Request performed&quot;) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>UIThread</code>有一个很不错的一点就是可以依赖于调用者。如果它是被一个<code>Activity</code>调用的，那么如果<code>activity.isFinishing()</code>返回<code>true</code>，则<code>uiThread</code>不会执行，这样就不会在<code>Activity</code>销毁的时候遇到崩溃的情况了。<br>假如你想使用<code>Future</code>来工作，<code>async</code>返回一个<code>Java Future</code>。而且如果你需要一个返回结果的<code>Future</code>，你可以使用<code>asyncResult</code>。</p>
-
-          
+          <blockquote>
+<p>语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由<br>《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/19/kotlin/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1079,22 +958,14 @@
 
       
         
-          
-            <h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><p>在js中函数的定义方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function a(x)&#123;</div><div class="line">     if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在js中函数也是一个对象，所有可以写成如下形式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = function (x)&#123;</div><div class="line">     if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>第二种方式属于匿名函数，但是因为赋值给了变量a，所以两种定义是一样的，但是第二种方式要注意在末尾加 ； 结束赋值语句。</p>
-<h3 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h3><p>由于JavaScript允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题，虽然函数内部并不需要这些参数，同样的少传也没有关系。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a(10);</div><div class="line">abs(10, &apos;blablabla&apos;); </div><div class="line">abs(); // 返回NaN</div></pre></td></tr></table></figure></p>
-<p>为了避免由于收到undefined参数二导致的输出结果为NaN，可以对参数进行判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function a(x) &#123;</div><div class="line">    if (typeof x !== &apos;number&apos;) &#123;</div><div class="line">        throw &apos;Not a number&apos;;</div><div class="line">    &#125;</div><div class="line">    if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><p>js中的一个关键字，只能在函数内部起作用，永远指向当前函数的调用者传入的所有参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo(x) &#123;</div><div class="line">    alert(x); // 10</div><div class="line">    for (var i=0; i&lt;arguments.length; i++) &#123;</div><div class="line">        alert(arguments[i]); // 10, 20, 30</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">foo(10, 20, 30);</div></pre></td></tr></table></figure></p>
-<p>利用arguments可以获得传入的参数，即使没有定义参数，也可以拿到参数值 arguments.length === 0<br>最常见的用法是判断传入参数的个数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// foo(a[, b], c)</div><div class="line">// 接收2~3个参数，b是可选参数，如果只传2个参数，b默认为null：</div><div class="line">function foo(a, b, c) &#123;</div><div class="line">    if (arguments.length === 2) &#123;</div><div class="line">        // 实际拿到的参数是a和b，c为undefined</div><div class="line">        c = b; // 把b赋给c</div><div class="line">        b = null; // b变为默认值</div><div class="line">    &#125;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h3><p>ES6引入了rest可变参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function foo(a, b, ...rest) &#123;</div><div class="line">    console.log(&apos;a = &apos; + a);</div><div class="line">    console.log(&apos;b = &apos; + b);</div><div class="line">    console.log(rest);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(1, 2, 3, 4, 5);</div><div class="line">// 结果:</div><div class="line">// a = 1</div><div class="line">// b = 2</div><div class="line">// Array [ 3, 4, 5 ]</div><div class="line"></div><div class="line">foo(1);</div><div class="line">// 结果:</div><div class="line">// a = 1</div><div class="line">// b = undefined</div><div class="line">// Array []</div></pre></td></tr></table></figure></p>
-<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>js的函数有一个特点，会先扫描函数体的语句，把所有声明的变量“提升”到函数的顶部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    var x = &apos;Hello, &apos; + y;</div><div class="line">    alert(x);</div><div class="line">    var y = &apos;Bob&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">相当于</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">    var y; // 提升变量y的申明</div><div class="line">    var x = &apos;Hello, &apos; + y;</div><div class="line">    alert(x);</div><div class="line">    y = &apos;Bob&apos;;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">### 常量</div><div class="line">ES6引入了const定义常量</div><div class="line">### 方法</div><div class="line">在一个对象中绑定函数，称为这个对象的方法。</div></pre></td></tr></table></figure></p>
-<p>var person={<br>    name: ‘小明’,<br>    brith: 1994,<br>    age： function(){<br>        var y = new Date().getFullYear();<br>        return y - this.brith;<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">### apply</div><div class="line">可以接收两个参数，第一个参数就是需要绑定的this变量，第二个参数是Array，表示函数本身的参数。</div></pre></td></tr></table></figure></p>
-<p>function getAge() {<br>    var y = new Date().getFullYear();<br>    return y - this.birth;<br>}</p>
-<p>var xiaoming = {<br>    name: ‘小明’,<br>    birth: 1990,<br>    age: getAge<br>};</p>
-<p>xiaoming.age(); // 25<br>getAge.apply(xiaoming, []); // 25, this指向xiaoming, 参数为空<br>```</p>
-
-          
+          <h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/01/function/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1234,43 +1105,14 @@
 
       
         
-          
-            <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>JavaScript要求每个语句以 ; 结束，语句块使用 {..}。如果没有在语句后面加 ; 并不会报错，浏览器会自动补全，自动加分号，有可能会改变程序语义，所以还是要写。</p>
-<h5 id="赋值语句"><a href="#赋值语句" class="headerlink" title="赋值语句"></a>赋值语句</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var x = 1;</div></pre></td></tr></table></figure>
-<h5 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;Hello JavaScript&apos;;</div></pre></td></tr></table></figure>
-<h5 id="alert提示"><a href="#alert提示" class="headerlink" title="alert提示"></a>alert提示</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(&apos;Hello JavaScript&apos;);</div></pre></td></tr></table></figure>
-<h5 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if ( 2 &gt; 1) &#123;</div><div class="line">    alert(&apos;2 &gt; 1&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>JavaScript中吧 null、undefind、0、NaN、’’视为false，其他值都视为true。</p>
-</blockquote>
-<h5 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h5><p>1、for循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (i=0;i&lt;10;i++)&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>for … in 可以把一个对象的所有属性一次循环出来（对于数组的循环结果是string）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (var key in person)&#123;</div><div class="line">    alert(key); //name,age,middle-school</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>要过滤掉对象继承的属性，用 hasOwnProperty() 来实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (var key in person)&#123;</div><div class="line">    if (o.hasOwnProperty(key)) &#123;</div><div class="line">        alert(key); //name,age,middle-school</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>2、while循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var x = 0;</div><div class="line">var n = 99;</div><div class="line">while (n &gt; 0) &#123;</div><div class="line">    x = x + n;</div><div class="line">    n = n - 2;</div><div class="line">&#125;</div><div class="line">x; // 2500</div></pre></td></tr></table></figure></p>
-<p>do…while,与while的区别就是在于，不是每次开始的时候判断条件，而是每次结束的时候判断条件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var n = 0;</div><div class="line">do&#123;</div><div class="line">    n = n + 1;</div><div class="line">&#125;while(n &lt; 100);</div><div class="line">n;</div></pre></td></tr></table></figure></p>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h5 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h5><p>JavaScript不区分整数和浮点数，统一使用Number表示</p>
-<h5 id="字符串-1"><a href="#字符串-1" class="headerlink" title="字符串"></a>字符串</h5><p>可以使用 “” 或 ‘’ 表示<br>多行字符串可以使用\n来写，ES6标准新增了一种多行字符串的表示方法用反引号 <code>...</code> 表示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">`测试</div><div class="line">多行</div><div class="line">字符串`;</div></pre></td></tr></table></figure></p>
-<p>模板字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var name = &apos;小明&apos;;</div><div class="line">var msg = &apos;你好,&apos;+ name;</div><div class="line"></div><div class="line">var msg2 = `你好$&#123;name&#125;`;</div></pre></td></tr></table></figure></p>
-<p>获取字符串某个指定位置的字符，可以使用下标操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var s = &apos;Hello&apos;;</div><div class="line">s[0]; //H</div></pre></td></tr></table></figure></p>
-<p>字符串的一些常用方法:<br>toUpperCase() 转化为大写<br>toLowerCase() 转化为小写<br>indexOf       搜索指定字符串出现的下标<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var s = &apos;Hello,world&apos;;</div><div class="line">s.indexOf(&apos;world&apos;); //7</div><div class="line">s.indexOf(&apos;World&apos;); //没有返回-1</div></pre></td></tr></table></figure></p>
-<p>substring()   截取字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var s = &apos;Hello,world&apos;;</div><div class="line">s.substring(0,5); //hello</div><div class="line">s.substring(7); //world</div></pre></td></tr></table></figure></p>
-<h5 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h5><p>可以使用 true 或 false 表示，也可以是布尔运算的结果</p>
-<p>运算符： 相等运算符有两种：<br>== : 它会自动转化数据类型在比较<br>=== : 它不会自动转化数据类型，如果类型不一致，返回false，如果一致在比较</p>
-<p><strong>注意：</strong>1.NaN 这个特殊的Number与其他值都不想等，包括自己可以使用 isNaN(NaN) //true 方法判断<br>2.浮点数比较的时候，浮点数计算过程会产生误差，所以比较的时候要注意<br>1/3 === (1-2/3); //false<br>Math.abs(1/3-(1-2/3))&lt;0.00000001; //true</p>
-<h5 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h5><p>在JavaScript中 null 表示空，与 0 、 ‘’ 不同。<br>undefined则和java中的null类似,表示未定义<br>大多数情况下，我们都应该用null，undefined仅仅在判断函数是否传递的情况下使用</p>
-<h5 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h5><p>数组使用 [] 表示，也可以通过函数来创建,索引从0开始<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[1,2,3,45,&apos;hello&apos;,null,true]</div><div class="line">new Array(1,2,3);</div></pre></td></tr></table></figure></p>
-<p>常用方法：<br>slice  截取数组，返回一个新的数组<br>push   在数组末尾追加若干元素<br>pop    删除最后一个元素<br>unshift 在数组头部添加若干元素<br>shift   删除第一个元素<br>sort    排序<br>reverse 翻转数组<br>splice  修改数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var arr = [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Yahoo&apos;, &apos;AOL&apos;, &apos;Excite&apos;, &apos;Oracle&apos;];</div><div class="line">// 从索引2开始删除3个元素,然后再添加两个元素:</div><div class="line">arr.splice(2, 3, &apos;Google&apos;, &apos;Facebook&apos;); // 返回删除的元素 [&apos;Yahoo&apos;, &apos;AOL&apos;, &apos;Excite&apos;]</div><div class="line">arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Google&apos;, &apos;Facebook&apos;, &apos;Oracle&apos;]</div><div class="line">// 只删除,不添加:</div><div class="line">arr.splice(2, 2); // [&apos;Google&apos;, &apos;Facebook&apos;]</div><div class="line">arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Oracle&apos;]</div><div class="line">// 只添加,不删除:</div><div class="line">arr.splice(2, 0, &apos;Google&apos;, &apos;Facebook&apos;); // 返回[],因为没有删除任何元素</div><div class="line">arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Google&apos;, &apos;Facebook&apos;, &apos;Oracle&apos;]</div></pre></td></tr></table></figure></p>
-<p>concat  连接两个数组，返回新数组<br>join    可以把当前数组使用指定字符串连接起来,返回连接后的字符串<br>多维数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arr = [[1,2],[2,3],[4,5,6,5]];</div></pre></td></tr></table></figure></p>
-<h5 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h5><p>由键值对组成，用 对象变量.属性值 的方式调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var person=&#123;</div><div class="line">    name: &apos;jack&apos;,</div><div class="line">    age: 20,</div><div class="line">    &apos;middle-school&apos;: &apos;No.1 Middle School&apos;   //存在特殊字符要用 &apos;&apos; 包起来  访问方式person[&apos;middle-school&apos;];</div><div class="line">&#125;;</div><div class="line">person.sex = &apos;男&apos;; //新增属性 sex</div><div class="line">delete person.sex; //删除属性 sex 或者 delete person[&apos;sex&apos;];</div><div class="line">&apos;name&apos; in person; //判断person是否有&apos;name&apos;属性返回布尔值</div></pre></td></tr></table></figure></p>
-<h5 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h5><p>JavaScript采用动态语言，使用关键字 var 声明变量，为了避免为用 var 声明变量导致的错误，可以使用strict模式，<br>在JavaScript代码第一行写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;</div></pre></td></tr></table></figure></p>
-<h5 id="map和set"><a href="#map和set" class="headerlink" title="map和set"></a>map和set</h5><p>ES6规范新引入了数据类型Map<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var m = new Map([[&apos;jack&apos;,12],[&apos;Alic&apos;,15],[&apos;Bob&apos;,13]]);</div></pre></td></tr></table></figure></p>
-<p>初始化Map需要一个二维数组，或者直接初始化一个空的Map。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var m = new Map();</div><div class="line">m.set(&apos;jack&apos;,12); //添加数据到空的map中</div><div class="line">m.has(&apos;jack&apos;); //判断是否存在key jack</div><div class="line">m.get(&apos;jack&apos;); //获取key对应的value</div><div class="line">m.delete(&apos;jack&apos;); //删除key</div></pre></td></tr></table></figure></p>
-<p>set，也是一组key的集合，但不存储value，由于key不可重复，所以set中没有重复的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var s = new Set([1, 2, 3, 3, &apos;3&apos;]); //数字3 和字符串3可以同时存在因为是不同的元素</div><div class="line">s.add(3); //可以使用add方法添加重复数据，但是不会有效果</div><div class="line">s; //Set &#123;1, 2, 3, &quot;3&quot;&#125;</div></pre></td></tr></table></figure></p>
-<h5 id="iterable"><a href="#iterable" class="headerlink" title="iterable"></a>iterable</h5><p>ES6规范新引入iterable类型，array、map和set都属于这个类型。可以使用for..of遍历，同时for..of也是ES6引入的新语法。<br>for…in 由于历史遗留问题，实际遍历的是对象的属性名称<br>for…of 则修复了这些问题，只循环集合本身的元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];</div><div class="line">a.name = &apos;Hello&apos;;</div><div class="line">for (var x in a) &#123;</div><div class="line">    alert(x); // &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;name&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var x of a) &#123;</div><div class="line">    alert(x); // &apos;A&apos;, &apos;B&apos;, &apos;C&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>更好的方法是直接使用iterable内置的forEach方法，它接受一个函数，每次迭代会自动调用该函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];</div><div class="line">a.forEach(function (element, index, array) &#123;</div><div class="line">    // element: 指向当前元素的值</div><div class="line">    // index: 指向当前索引</div><div class="line">    // array: 指向Array对象本身</div><div class="line">    alert(element);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>如果对某些参数不感兴趣，由于JavaScript的函数调用不要求参数必须一致，因此可以忽略它们。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];</div><div class="line">a.forEach(function (element) &#123;</div><div class="line">    alert(element);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-
-          
+          <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>JavaScript要求每个语句以 ; 结束，语句块使用 {..}。如果没有在语句后面加 ; 并不会报错，浏览器会自动补全，自动加分号，有可能会改变程序语义，所以还是要写。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/31/js/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1410,52 +1252,15 @@
 
       
         
-          
-            <p>由于最近比较清闲，自己看了点东西，看完后回头想想，好像什么也没记住。一味的只是看终究还是不行，看完一遍只留下一点浅浅的印象，这样不行，所以我就想着也弄个个人主页吧，没事记点笔记，写写工作，谈谈生活，美滋滋。</p>
-<p>用hexo搭建的时候，应该是没有接触过这面，git也一直用可视化工具，经常弄了半个小时一个小时才完成想要的东西，感觉自己像个白痴。真是年纪大了脑子也不灵光了，满满的危机感。废话比较多了，直接上搭建步骤，免得以后又忘了。。。</p>
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><hr>
-<p>hexo是一款基于Node.js的静态博客框架，so…</p>
-<h4 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h4><p><a href="https://nodejs.org/en/download/" target="_blank" rel="external">下载地址</a><br>一路安装就行，注意path要勾上，默认就是打勾的，所以基本没有什么问题。</p>
-<h4 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h4><p><a href="http://git-scm.com/download/" target="_blank" rel="external">下载地址</a></p>
-<h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><p>选个你喜欢的位置，比如E://hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ cd e://hexo</div><div class="line">$ npm install hexo-cli -g </div><div class="line">$ hexo init blog</div><div class="line">$ cd blog</div><div class="line">$ npm install</div><div class="line">$ hexo g </div><div class="line">$ hexo s</div></pre></td></tr></table></figure></p>
-<p>上面的命令执行完成之后就可以打开浏览器查看<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
-<p><strong> 注意：</strong> ctrl+c可以关掉本地服务，一般情况是不需要关掉的，你直接改你想要的东西改完，刷新一下网页就ok了</p>
-<p>几个常用的命令：<br> 1.hexo g(hexo generate) 生成静态文件，会在当前目录下生成一个叫做public的文件夹<br> 2.hexo s(hexo server) 启动本地服务，用来预览博客<br> 3.hexo d(hexo deploy) 部署到远端(比如github)<br> 4.hexo n “new”(hexo new “new”) 新建文章</p>
-<h2 id="Hexo主题相关"><a href="#Hexo主题相关" class="headerlink" title="Hexo主题相关"></a>Hexo主题相关</h2><hr>
-<p>港真，hexo默认的主题真的不怎么好看，作为一个有个性的人，怎么可以用官方demo主题，果断研究如果安装主题。找了好久主题，最后还是用了最多人用的next，别说我每个性，我不用官方的就已经是很有个性了。<br>附上<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next官网</a></p>
-<h4 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h4><p>1.安装Next<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure></p>
-<p>2.使用主题</p>
-<p>打开根目录_config.yml配置文件中的theme属性，将其设置为next。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Extensions</div><div class="line">## Plugins: http://hexo.io/plugins/</div><div class="line">## Themes: http://hexo.io/themes/</div><div class="line">theme: next</div></pre></td></tr></table></figure></p>
-<p>3.查看主题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo g # 生成</div><div class="line">$ hexo s # 启动本地web服务器</div></pre></td></tr></table></figure>
-<h4 id="个性化主题"><a href="#个性化主题" class="headerlink" title="个性化主题"></a>个性化主题</h4><p>好吧，所谓的个性化。在next官网基本都有api，很完整。</p>
-<p>1.首先是站点配置文件，就是你根目录下的_config.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># Site 网站</div><div class="line">title: 慎思而笃行                //标题</div><div class="line">subtitle: 终极奥义·复制粘贴      //副标题</div><div class="line">description: 是你。你会像他一样  //描述就是个性签名（一个微笑）</div><div class="line">author: wenzi                  //作者</div><div class="line">language: zh-Hans              //网站语言</div><div class="line">timezone:                      //时区默认为电脑的时区</div></pre></td></tr></table></figure></p>
-<p>2.主题配置文件,主题next下的_config.yml<br>next支持三种主题，打开相应的注释就可以了，还是挺方便的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Schemes</div><div class="line"># scheme: Muse</div><div class="line">scheme: Mist</div><div class="line"># scheme: Pisces</div></pre></td></tr></table></figure></p>
-<p>网站图标，最好用ico格式，百度ioc，一大堆转换网站</p>
-<p><img src="http://onifre9rp.bkt.clouddn.com/ico.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Put your favicon.ico into `hexo-site/source/` directory.</div><div class="line">favicon: images/favicon.ico</div></pre></td></tr></table></figure></p>
-<p>菜单，出了主题自带的也可以自己创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  home: /</div><div class="line">  categories: /categories</div><div class="line">  archives: /archives</div><div class="line">  about: /about</div><div class="line">  tags: /tags</div><div class="line"></div><div class="line">menu_icons:</div><div class="line">  enable: false</div><div class="line">  #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome</div><div class="line">  home: home</div><div class="line">  about: user</div><div class="line">  categories: th</div><div class="line">  schedule: calendar</div><div class="line">  tags: tags</div><div class="line">  archives: archive</div><div class="line">  sitemap: sitemap</div><div class="line">  commonweal: heartbeat</div></pre></td></tr></table></figure></p>
-<p>外链网站<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">social:</div><div class="line">  GitHub: https://github.com/wenzi5519</div><div class="line"></div><div class="line">social_icons:</div><div class="line">  enable: true</div><div class="line">  GitHub: github</div></pre></td></tr></table></figure></p>
-<p>打赏功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">donate: </div><div class="line">  enable: true</div><div class="line">  text: Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！</div><div class="line">  alipay: </div><div class="line">  wechat:</div></pre></td></tr></table></figure></p>
-<p>*更具体的可以参考官网</p>
-<h2 id="Git相关"><a href="#Git相关" class="headerlink" title="Git相关"></a>Git相关</h2><hr>
-<p>git作为一名开发人员，应该都用过，不过应该也有像我这样的，用确实用了，但是还是不会用，实力尴尬。就这个项目，写一点我部署项目的时候用到的git命令好了</p>
-<h4 id="首先是hexo的部署方法，不过我没有成功。"><a href="#首先是hexo的部署方法，不过我没有成功。" class="headerlink" title="首先是hexo的部署方法，不过我没有成功。"></a>首先是hexo的部署方法，不过我没有成功。</h4><p>在根目录的，站点配置文件里面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/wenzi5519/wenzi5519.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
-<p>然后执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deloyer-git --save</div><div class="line">$ hexo d</div></pre></td></tr></table></figure></p>
-<p>就可以部署完成了。</p>
-<h4 id="使用Git命令部署"><a href="#使用Git命令部署" class="headerlink" title="使用Git命令部署"></a>使用Git命令部署</h4><p>首先配置git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;username&quot;</div><div class="line">$ git config --global user.email &quot;username@example.com&quot;</div></pre></td></tr></table></figure></p>
-<p>检测电脑有没有ssh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -al ~/.ssh</div></pre></td></tr></table></figure></p>
-<p>如果没有生成新的ssh Key,一路回车<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</div></pre></td></tr></table></figure></p>
-<p>然后看下ssh-agent是否可运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-agent -s</div></pre></td></tr></table></figure></p>
-<p>添加ssh key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/id_rsa</div></pre></td></tr></table></figure></p>
-<p>复制key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">clip &lt; ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure></p>
-<p>然后在github右上角点头像–&gt;setting–&gt;Personal settings–&gt;ssh key创建<br>测试一下试试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure></p>
-<p>接下来就是push到github了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line">$ git commit -m “change description”</div><div class="line">$ git push origin hexo</div></pre></td></tr></table></figure></p>
-<p>*这里新建一个hexo分支是为了方便可以在不同的电脑上写博客</p>
-<p><strong> 已有环境 </strong><br>已经在这台电脑上写过博客了，那么可以在已有的工作目录下同步之前写的博客。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull</div></pre></td></tr></table></figure></p>
-<p>然后就可以写新的博客了，写好之后 hexo g -d 部署到远端<br>接着就是push到github<br><strong> 新的环境 </strong><br>新的电脑，我们需要先把项目下载到本地，然后在hexo初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/wenzi5519/wenzi5519.github.io.git</div><div class="line">$ cd wenzi5519.github.io</div><div class="line">$ npm install hexo</div><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<p>然后就是和已有环境一样的操作了，部署推送。</p>
-
-          
+          <p>由于最近比较清闲，自己看了点东西，看完后回头想想，好像什么也没记住。一味的只是看终究还是不行，看完一遍只留下一点浅浅的印象，这样不行，所以我就想着也弄个个人主页吧，没事记点笔记，写写工作，谈谈生活，美滋滋。</p>
+<p>用hexo搭建的时候，应该是没有接触过这面，git也一直用可视化工具，经常弄了半个小时一个小时才完成想要的东西，感觉自己像个白痴。真是年纪大了脑子也不灵光了，满满的危机感。废话比较多了，直接上搭建步骤，免得以后又忘了。。。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/29/new/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

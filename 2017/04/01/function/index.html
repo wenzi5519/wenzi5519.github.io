@@ -87,19 +87,16 @@
 
 
 
-<meta name="description" content="定义函数在js中函数的定义方式如下：1234567function a(x)&amp;#123;     if (x &amp;gt;= 0) &amp;#123;        return x;    &amp;#125; else &amp;#123;        return -x;    &amp;#125;&amp;#125;
-在js中函数也是一个对象，所有可以写成如下形式:1234567var a = function (x)&amp;#123">
+<meta name="description" content="定义函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript函数">
 <meta property="og:url" content="http://yoursite.com/2017/04/01/function/index.html">
 <meta property="og:site_name" content="慎思而笃行">
-<meta property="og:description" content="定义函数在js中函数的定义方式如下：1234567function a(x)&amp;#123;     if (x &amp;gt;= 0) &amp;#123;        return x;    &amp;#125; else &amp;#123;        return -x;    &amp;#125;&amp;#125;
-在js中函数也是一个对象，所有可以写成如下形式:1234567var a = function (x)&amp;#123">
-<meta property="og:updated_time" content="2017-04-19T07:21:46.768Z">
+<meta property="og:description" content="定义函数">
+<meta property="og:updated_time" content="2017-06-22T09:04:33.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript函数">
-<meta name="twitter:description" content="定义函数在js中函数的定义方式如下：1234567function a(x)&amp;#123;     if (x &amp;gt;= 0) &amp;#123;        return x;    &amp;#125; else &amp;#123;        return -x;    &amp;#125;&amp;#125;
-在js中函数也是一个对象，所有可以写成如下形式:1234567var a = function (x)&amp;#123">
+<meta name="twitter:description" content="定义函数">
 
 
 
@@ -371,7 +368,8 @@
       
 
       
-        <h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><p>在js中函数的定义方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function a(x)&#123;</div><div class="line">     if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><a id="more"></a>
+<p>在js中函数的定义方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function a(x)&#123;</div><div class="line">     if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在js中函数也是一个对象，所有可以写成如下形式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = function (x)&#123;</div><div class="line">     if (x &gt;= 0) &#123;</div><div class="line">        return x;</div><div class="line">    &#125; else &#123;</div><div class="line">        return -x;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <p>第二种方式属于匿名函数，但是因为赋值给了变量a，所以两种定义是一样的，但是第二种方式要注意在末尾加 ； 结束赋值语句。</p>
 <h3 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h3><p>由于JavaScript允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题，虽然函数内部并不需要这些参数，同样的少传也没有关系。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a(10);</div><div class="line">abs(10, &apos;blablabla&apos;); </div><div class="line">abs(); // 返回NaN</div></pre></td></tr></table></figure></p>

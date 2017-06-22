@@ -1,7 +1,7 @@
 ---
 title: kotlin基础语法 01
 date: 2017-04-19 10:47:46
-tags: [Kotlin,Anko,java]
+tags: [Kotlin,Anko,Java,Android]
 categories: 笔记
 ---
 
@@ -90,6 +90,7 @@ inv() – bitwise inversion
 
 变量：
 变量使用关键字 ``var`` 和`` val ``定义
+``val``为不可变量，也可以认为是线程安全的，因为无法改变，所以也不需要定义访问控制
 一个重要的概念是：尽可能地使用val 
 
 属性：
@@ -154,7 +155,7 @@ public class Request(val url: String) {
 anko提供了非常简单的DSL来处理异步任务，可以满足大部分的需求。
 提供``async``函数执行异步线程，通过``UIThread``的方式回到主线程。一个栗子
 ```
-async() {
+doAsync() {
     Request(url).run()
     uiThread { longToast("Request performed") }
 }

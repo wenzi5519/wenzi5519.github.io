@@ -99,7 +99,7 @@
 
 类1、定义类使用关键字 class1class MainActivity&amp;#123;&amp;#125;
 2、有一个默认唯一的构造器，如果一个类没有任何内容可以省略大括号1class P">
-<meta property="og:updated_time" content="2017-04-24T01:43:29.031Z">
+<meta property="og:updated_time" content="2017-05-10T09:35:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kotlin基础语法 01">
 <meta name="twitter:description" content="语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。
@@ -396,14 +396,14 @@
 <p>shl(bits) – signed shift left (Java’s &lt;&lt;)<br>shr(bits) – signed shift right (Java’s &gt;&gt;)<br>ushr(bits) – unsigned shift right (Java’s &gt;&gt;&gt;)<br>and(bits) – bitwise and<br>or(bits) – bitwise or<br>xor(bits) – bitwise xor<br>inv() – bitwise inversion</p>
 </blockquote>
 <p>字符串：<br><code>String</code> 字符串可以像数组一样，通过下标访问到数据</p>
-<p>变量：<br>变量使用关键字 <code>var</code> 和<code>val</code>定义<br>一个重要的概念是：尽可能地使用val </p>
+<p>变量：<br>变量使用关键字 <code>var</code> 和<code>val</code>定义<br><code>val</code>为不可变量，也可以认为是线程安全的，因为无法改变，所以也不需要定义访问控制<br>一个重要的概念是：尽可能地使用val </p>
 <p>属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Person&#123;</div><div class="line">    var name: String=&quot;&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">var person=Person()</div><div class="line">person.name=&quot;jack&quot;</div><div class="line">val name=person.name</div></pre></td></tr></table></figure></p>
 <p>如果没有指定，属性会默认使用<code>getter</code>和<code>setter</code>方法。可以自己指定成自定义的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public classs Person &#123;</div><div class="line">    var name: String = &quot;&quot;</div><div class="line">        get() = field.toUpperCase()</div><div class="line">        set(value)&#123;</div><div class="line">            field = &quot;Name: $value&quot;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="Anko"><a href="#Anko" class="headerlink" title="Anko"></a>Anko</h2><p>Anko是JetBrains开发的用来代替xml生成ui布局的库。<br>Anko使用扩展函数在Android框架中增添了一些新的功能<br>比如一个Anko扩展函数可以被用来简化获取一个RecyclerView：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">val forecastList: RecyclerView = find(R.id.forecast_list)</div></pre></td></tr></table></figure></p>
 <p><strong>扩展函数</strong><br>扩展函数是指在一个类上增加一种新的行为，甚至我们没有这个类代码的访问权限。<br>Kotlin中扩展函数的一个优势是我们不需要再调用方法的时候吧整个对象当做参数传入。<br>扩展函数表现的就像是属于这个类的一样，而且我们可以使用<code>this</code>关键字和调用所有的public方法<br>举个栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fun Context.toast(message:CharAequence,duration:Int=Toast.LENGTH_SHORT)&#123;</div><div class="line">    Toast.makeText(this,message,druation).show()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这个方法可以在Activity内部直接使用，不需要传入context<br>Anko已经包括了自己的toast扩展函数，跟上面这个很相似。Anko提供了一些针对CharSequence和resource的函数，还有两个不同的toast和longToast方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toast(&quot;Hello world!&quot;)</div><div class="line">longToast(R.id.hello_world)</div></pre></td></tr></table></figure></p>
 <p><strong>api请求</strong><br>kotlin提供的扩展函数让请求变得更加简单。<br>再举个栗子：<br>先创建一个Request类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class Request(val url: String) &#123;</div><div class="line">    public fun run() &#123;</div><div class="line">        val forecastJsonStr = URL(url).readText()</div><div class="line">        Log.d(javaClass.simpleName, forecastJsonStr)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>请求很简单地接收一个url，然后读取结果并在logcat上打印json。实现非常简单，因为我们使用<code>readText</code>，这是Kotlin标准库中的扩展函数。这个方法不推荐结果很大的响应，但是在我们这个例子中已经足够好了。<br><strong>异步请求</strong><br>anko提供了非常简单的DSL来处理异步任务，可以满足大部分的需求。<br>提供<code>async</code>函数执行异步线程，通过<code>UIThread</code>的方式回到主线程。一个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">async() &#123;</div><div class="line">    Request(url).run()</div><div class="line">    uiThread &#123; longToast(&quot;Request performed&quot;) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>请求很简单地接收一个url，然后读取结果并在logcat上打印json。实现非常简单，因为我们使用<code>readText</code>，这是Kotlin标准库中的扩展函数。这个方法不推荐结果很大的响应，但是在我们这个例子中已经足够好了。<br><strong>异步请求</strong><br>anko提供了非常简单的DSL来处理异步任务，可以满足大部分的需求。<br>提供<code>async</code>函数执行异步线程，通过<code>UIThread</code>的方式回到主线程。一个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">doAsync() &#123;</div><div class="line">    Request(url).run()</div><div class="line">    uiThread &#123; longToast(&quot;Request performed&quot;) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>UIThread</code>有一个很不错的一点就是可以依赖于调用者。如果它是被一个<code>Activity</code>调用的，那么如果<code>activity.isFinishing()</code>返回<code>true</code>，则<code>uiThread</code>不会执行，这样就不会在<code>Activity</code>销毁的时候遇到崩溃的情况了。<br>假如你想使用<code>Future</code>来工作，<code>async</code>返回一个<code>Java Future</code>。而且如果你需要一个返回结果的<code>Future</code>，你可以使用<code>asyncResult</code>。</p>
 
       
@@ -463,8 +463,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/24/2017-4-24/" rel="prev" title="kotlin基础语法 01">
-                kotlin基础语法 01 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/24/2017-4-24/" rel="prev" title="kotlin基础语法 02">
+                kotlin基础语法 02 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -537,7 +537,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -559,7 +559,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

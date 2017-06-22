@@ -7,7 +7,7 @@ categories: 笔记
 
 > 语法简洁，逻辑看起来也更清楚了，还能省去findviewbyid，目前这些就是我学kotlin的理由
 《Kotlin for android Developers》 可以直接去看这个书，我这个笔记，基本都是书上的东西。
-
+<!-- more -->
 ## 类
 1、定义类使用关键字 ``class ``
 ```

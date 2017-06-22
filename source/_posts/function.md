@@ -5,6 +5,7 @@ tags: [JavaScript]
 categories: 笔记
 ---
 ### 定义函数
+<!-- more -->
 在js中函数的定义方式如下：
 ```
 function a(x){

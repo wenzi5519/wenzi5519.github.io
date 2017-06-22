@@ -7,7 +7,7 @@ categories: 笔记
 <blockquote class="blockquote-center">EasyPr<br/>
 ---站在巨人的肩膀上前行
 </blockquote>
-
+<!-- more -->
 > 需要一个车牌识别功能，对比几家车牌识别，收费都挺高的，权衡下还是选择了使用EasyPr。
 
 ## 查看github Demo
@@ -46,9 +46,10 @@ TARGET_PLATFORM := android-22
 ```
 TARGET_ABI := android-22-arm64-v8a
 ```
-**APP_ABI**指定不同的ABI  
+**APP_ABI**指定不同的ABI
+
 指令集|值
----|---
+--- | ---
 基于 ARMv7 的设备上的硬件 FPU 指令|	APP_ABI := armeabi-v7a
 ARMv8 AArch64	|APP_ABI := arm64-v8a
 IA-32|	APP_ABI := x86
